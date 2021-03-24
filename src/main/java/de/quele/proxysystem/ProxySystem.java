@@ -20,7 +20,7 @@ public class ProxySystem extends Plugin {
         this.initCommands();
 
         this.getLogger().info("Plugin successfully activated!");
-        this.getLogger().info(("Coded by quele | Muhammed"));
+        this.getLogger().info(("Coded by quele"));
     }
     private void initListeners() {
         PluginManager pluginManager = this.getProxy().getPluginManager();
@@ -37,7 +37,7 @@ public class ProxySystem extends Plugin {
     public void onDisable() {
         proxySystem = this;
         this.getLogger().info("Plugin successfully disabled!");
-        this.getLogger().info(("Coded by quele | Muhammed"));
+        this.getLogger().info(("Coded by quele"));
     }
 
     public String getPrefix() {
