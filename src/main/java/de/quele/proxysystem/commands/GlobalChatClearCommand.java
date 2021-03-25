@@ -17,8 +17,13 @@ public class GlobalChatClearCommand extends Command {
     public void execute(CommandSender commandSender, String[] strings) {
         if (commandSender instanceof ProxiedPlayer) {
             ProxiedPlayer player = (ProxiedPlayer)commandSender;
-            if (!player.hasPermission("command.use.globalchatclear")) {
-                player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§cDazu besitzt du keine Berechtigung§8!"));
+
+            if(!(strings.length < 1)) {
+                if (!player.hasPermission("command.use.globalchatclear")) {
+                    player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§cDazu besitzt du keine Berechtigung§8!"));
+                    return;
+                }
+                player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§cNutze /gcc §8!"));
                 return;
             }
 

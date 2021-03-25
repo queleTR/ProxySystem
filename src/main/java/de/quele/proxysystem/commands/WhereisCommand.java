@@ -18,14 +18,19 @@ public class WhereisCommand extends Command {
         if (commandSender instanceof ProxiedPlayer) {
             ProxiedPlayer player = (ProxiedPlayer)commandSender;
 
+            if(!(strings.length == 1)) {
             if (!player.hasPermission("command.use.whereis")) {
                 player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§cDazu besitzt du keine Berechtigung§8!"));
                 return;
             }
+            player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§cNutze /whereis <Name> §8!"));
+            return;
+        }
 
             ProxiedPlayer targetPlayer = ProxyServer.getInstance().getPlayer(strings[0]);
 
-            if(targetPlayer == null) {
+
+                if(targetPlayer == null) {
                 player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§cDieser Spieler ist derzeit nicht auf dem Netzwerk§8!"));
                 return;
             }

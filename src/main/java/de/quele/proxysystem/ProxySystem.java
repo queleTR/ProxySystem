@@ -5,17 +5,20 @@ import de.quele.proxysystem.commands.WhereamiCommand;
 import de.quele.proxysystem.commands.WhereisCommand;
 import de.quele.proxysystem.discord.DiscordManager;
 import lombok.SneakyThrows;
-import net.dv8tion.jda.api.AccountType;
 import net.dv8tion.jda.api.JDA;
-import net.dv8tion.jda.api.JDABuilder;
-import net.dv8tion.jda.internal.JDAImpl;
+import net.md_5.bungee.api.ProxyServer;
+import net.md_5.bungee.api.plugin.Command;
 import net.md_5.bungee.api.plugin.Plugin;
 import net.md_5.bungee.api.plugin.PluginManager;
 
-import javax.security.auth.login.LoginException;
+import java.util.Map;
+import java.util.UUID;
 
 
 public class ProxySystem extends Plugin {
+
+
+
 
     private static ProxySystem proxySystem;
     private final String prefix = "§3Proxy §8» §7";
@@ -34,7 +37,7 @@ public class ProxySystem extends Plugin {
         this.getLogger().info("Plugin successfully activated!");
         this.getLogger().info(("Coded by quele"));
 
-        DiscordManager.buildJDA();
+        //DiscordManager.buildJDA();
     }
     private void initListeners() {
         PluginManager pluginManager = this.getProxy().getPluginManager();
@@ -61,5 +64,4 @@ public class ProxySystem extends Plugin {
     public static ProxySystem getProxySystem() {
         return proxySystem;
     }
-
 }
