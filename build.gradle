@@ -4,9 +4,15 @@ plugins {
 
 group 'de.quele'
 version '1.0-SNAPSHOT'
+def jdaVersion = '4.2.0'
+
+
+compileJava.options.encoding = "UTF-8"
+compileTestJava.options.encoding = "UTF-8"
 
 repositories {
     mavenCentral()
+    jcenter()
     maven {
         url 'https://papermc.io/repo/repository/maven-public/'
     }
@@ -17,6 +23,8 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
     compileOnly 'io.github.waterfallmc:waterfall-api:1.16-R0.4-SNAPSHOT'
+    implementation('net.dv8tion:JDA:4.2.0_228')
+
 }
 
 test {
