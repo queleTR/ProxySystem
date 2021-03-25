@@ -27,7 +27,7 @@ public class PingCommand extends Command {
         if (commandSender instanceof ProxiedPlayer) {
             ProxiedPlayer player = (ProxiedPlayer) commandSender;
 
-            if (!player.hasPermission("command.use.ping")) {
+            if (player.hasPermission("command.use.ping")) {
                 int ping = player.getPing();
                 player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§7Dein aktueller Ping beträgt§8: §e" + ping + "§7ms"));
             } else {

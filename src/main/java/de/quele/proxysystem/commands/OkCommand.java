@@ -23,7 +23,12 @@ public class OkCommand extends Command {
     public void execute(CommandSender commandSender, String[] strings) {
         if (commandSender instanceof ProxiedPlayer) {
             ProxiedPlayer player = (ProxiedPlayer) commandSender;
-            player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "."));
+            if (player.hasPermission("command.use.ok")) {
+                player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "."));
+            }else {
+                player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§cDazu besitzt du keine Berechtigung§8!"));
+                return;
             }
+        }
     }
 }
