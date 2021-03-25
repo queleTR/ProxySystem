@@ -6,10 +6,7 @@
 
 package de.quele.proxysystem;
 
-import de.quele.proxysystem.commands.BroadcastCommand;
-import de.quele.proxysystem.commands.GlobalChatClearCommand;
-import de.quele.proxysystem.commands.WhereamiCommand;
-import de.quele.proxysystem.commands.WhereisCommand;
+import de.quele.proxysystem.commands.*;
 import de.quele.proxysystem.discord.DiscordManager;
 import lombok.SneakyThrows;
 import net.dv8tion.jda.api.JDA;
@@ -56,6 +53,7 @@ public class ProxySystem extends Plugin {
     pluginManager.registerCommand(this, new WhereisCommand());
     pluginManager.registerCommand(this, new GlobalChatClearCommand());
     pluginManager.registerCommand(this, new BroadcastCommand());
+        pluginManager.registerCommand(this, new MessageCommand());
 
     }
 
