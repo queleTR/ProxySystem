@@ -53,7 +53,9 @@ public class ProxySystem extends Plugin {
     pluginManager.registerCommand(this, new WhereisCommand());
     pluginManager.registerCommand(this, new GlobalChatClearCommand());
     pluginManager.registerCommand(this, new BroadcastCommand());
-        pluginManager.registerCommand(this, new MessageCommand());
+    pluginManager.registerCommand(this, new MessageCommand());
+    pluginManager.registerCommand(this, new OkCommand());
+        pluginManager.registerCommand(this, new PingCommand());
 
     }
 
