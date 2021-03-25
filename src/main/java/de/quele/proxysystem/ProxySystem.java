@@ -1,5 +1,12 @@
+/*
+ * Created by quele | Muhammed
+ * Copyright (C) all rights reserved.
+ * Website: http://quele.live
+ */
+
 package de.quele.proxysystem;
 
+import de.quele.proxysystem.commands.BroadcastCommand;
 import de.quele.proxysystem.commands.GlobalChatClearCommand;
 import de.quele.proxysystem.commands.WhereamiCommand;
 import de.quele.proxysystem.commands.WhereisCommand;
@@ -48,6 +55,8 @@ public class ProxySystem extends Plugin {
     pluginManager.registerCommand(this, new WhereamiCommand());
     pluginManager.registerCommand(this, new WhereisCommand());
     pluginManager.registerCommand(this, new GlobalChatClearCommand());
+    pluginManager.registerCommand(this, new BroadcastCommand());
+
     }
 
     @Override

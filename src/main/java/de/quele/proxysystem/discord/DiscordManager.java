@@ -1,3 +1,9 @@
+/*
+ * Created by quele | Muhammed
+ * Copyright (C) all rights reserved.
+ * Website: http://quele.live
+ */
+
 package de.quele.proxysystem.discord;
 
 import net.dv8tion.jda.api.JDA;
