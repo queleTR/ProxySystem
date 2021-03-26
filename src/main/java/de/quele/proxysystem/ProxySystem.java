@@ -7,16 +7,10 @@
 package de.quele.proxysystem;
 
 import de.quele.proxysystem.commands.*;
-import de.quele.proxysystem.discord.DiscordManager;
 import lombok.SneakyThrows;
 import net.dv8tion.jda.api.JDA;
-import net.md_5.bungee.api.ProxyServer;
-import net.md_5.bungee.api.plugin.Command;
 import net.md_5.bungee.api.plugin.Plugin;
 import net.md_5.bungee.api.plugin.PluginManager;
-
-import java.util.Map;
-import java.util.UUID;
 
 
 public class ProxySystem extends Plugin {
@@ -55,8 +49,10 @@ public class ProxySystem extends Plugin {
     pluginManager.registerCommand(this, new BroadcastCommand());
     pluginManager.registerCommand(this, new MessageCommand());
     pluginManager.registerCommand(this, new OkCommand());
-        pluginManager.registerCommand(this, new PingCommand());
-
+    pluginManager.registerCommand(this, new PingCommand());
+    pluginManager.registerCommand(this, new JoinMeCommand());
+    pluginManager.registerCommand(this, new ServerCommand());
+    pluginManager.registerCommand(this, new ServerConnectCommand());
     }
 
     @Override
