@@ -24,10 +24,13 @@ public class MessageCommand extends Command {
         if (commandSender instanceof ProxiedPlayer) {
             ProxiedPlayer player = (ProxiedPlayer) commandSender;
 
-            if (strings.length > 1) {
+            if (strings.length < 1) {
 
                 ProxiedPlayer targetPlayer = ProxyServer.getInstance().getPlayer(strings[0]);
                 if (player.hasPermission("command.use.msg")) {
+                    if (strings.length == 1) {
+                        commandSender.sendMessage("§7Der Befehl wird wie folgt genutzt: §a/msg <Name> <Nachricht>");
+                    }
                     if (targetPlayer == null) {
                         player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§cDieser Spieler ist derzeit nicht auf dem Netzwerk§8!"));
 

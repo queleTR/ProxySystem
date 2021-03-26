@@ -22,26 +22,32 @@ public class WhereisCommand extends Command {
     @Override
     public void execute (CommandSender commandSender, String[] strings) {
         if (commandSender instanceof ProxiedPlayer) {
-            ProxiedPlayer player = (ProxiedPlayer)commandSender;
+            ProxiedPlayer player = (ProxiedPlayer) commandSender;
 
-            if(!(strings.length == 1)) {
-            if (!player.hasPermission("command.use.whereis")) {
+            if (player.hasPermission("command.use.whereis")) {
+                if (!(strings.length < 1)) {
+                    if ((strings.length < 2)) {
+
+                        ProxiedPlayer targetPlayer = ProxyServer.getInstance().getPlayer(strings[0]);
+
+
+                        if (targetPlayer == null) {
+                            player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§cDieser Spieler ist derzeit nicht auf dem Netzwerk§8!"));
+                            return;
+                        }
+
+                        player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "Der Spieler §a" + targetPlayer.getName() + " §7befindet sich derzeit auf dem Server §e" + targetPlayer.getServer().getInfo().getName()));
+                    }else {
+                        player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§cNutze /whereis <Name>§8!"));
+                    }
+                }else {
+                    player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§cNutze /whereis <Name>§8!"));
+                    return;
+                }
+            }else {
                 player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§cDazu besitzt du keine Berechtigung§8!"));
                 return;
             }
-            player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§cNutze /whereis <Name> §8!"));
-            return;
-        }
-
-            ProxiedPlayer targetPlayer = ProxyServer.getInstance().getPlayer(strings[0]);
-
-
-                if(targetPlayer == null) {
-                player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§cDieser Spieler ist derzeit nicht auf dem Netzwerk§8!"));
-                return;
-            }
-
-            player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "Der Spieler §a" + targetPlayer.getName() + " §7befindet sich derzeit auf dem Server §e" + targetPlayer.getServer().getInfo().getName()));
         }
     }
 }

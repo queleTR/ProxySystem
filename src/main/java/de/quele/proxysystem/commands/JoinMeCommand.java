@@ -20,29 +20,29 @@ public class JoinMeCommand extends Command {
         super("joinme");
     }
 
-    public void execute(final CommandSender sender, final String[] args) {
-        if (args.length == 1) {
-            sender.sendMessage("§7Der JoinMe Befehl wird wie folgt genuzt: §a/joinme");
-        }
-        else if (sender.hasPermission("command.use.joinme")) {
-            final Iterator psender = ProxyServer.getInstance().getPlayers().iterator();
-            final ProxiedPlayer ps = (ProxiedPlayer) psender.next();
-            final Iterator pl = ProxyServer.getInstance().getPlayers().iterator();
-            final ProxiedPlayer p = (ProxiedPlayer) pl.next();
-            final String server = p.getServer().getInfo().getName();
-            final TextComponent msg = new TextComponent(String.valueOf("§cZum nachjoinen §4HIER §cklicken"));
-            msg.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder("§aKlick mich um den Server zu betreten").create()));
-            msg.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/verbinden478474878547854 " + p.getServer().getInfo().getName()));
-            ProxyServer.getInstance().broadcast("§7§k==================================");
-            ProxyServer.getInstance().broadcast("");
-            ProxyServer.getInstance().broadcast("§a" + p.getName() + " §7spielt auf §a" + server);
-            ProxyServer.getInstance().broadcast((BaseComponent)msg);
-            ProxyServer.getInstance().broadcast("");
-            ProxyServer.getInstance().broadcast("§7§k==================================");
-            sender.sendMessage("§aDu hast den JoinMe Befehl benutzt");
-        }
-        else {
-            sender.sendMessage("§cDu darfst den JoinMe Befehl nicht nutzen");
+    public void execute(CommandSender commandSender, String[] strings) {
+        if (commandSender.hasPermission("command.use.joinme")) {
+            if (!(strings.length < 1)) {
+                commandSender.sendMessage("§7Der Befehl wird wie folgt genutzt: §a/joinme");
+            } else {
+                final Iterator psender = ProxyServer.getInstance().getPlayers().iterator();
+                final ProxiedPlayer ps = (ProxiedPlayer) psender.next();
+                final Iterator pl = ProxyServer.getInstance().getPlayers().iterator();
+                final ProxiedPlayer p = (ProxiedPlayer) pl.next();
+                final String server = p.getServer().getInfo().getName();
+                final TextComponent msg = new TextComponent(String.valueOf("§cZum nachjoinen §4HIER §cklicken"));
+                msg.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder("§aKlick mich um den Server zu betreten").create()));
+                msg.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/verbinden478474878547854 " + p.getServer().getInfo().getName()));
+                ProxyServer.getInstance().broadcast("§7§k==================================");
+                ProxyServer.getInstance().broadcast("");
+                ProxyServer.getInstance().broadcast("§a" + p.getName() + " §7spielt auf §a" + server);
+                ProxyServer.getInstance().broadcast((BaseComponent) msg);
+                ProxyServer.getInstance().broadcast("");
+                ProxyServer.getInstance().broadcast("§7§k==================================");
+                commandSender.sendMessage("§aDu hast den JoinMe Befehl benutzt");
+            }
+        } else {
+            commandSender.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§cDazu besitzt du keine Berechtigung§8!"));
         }
     }
 }

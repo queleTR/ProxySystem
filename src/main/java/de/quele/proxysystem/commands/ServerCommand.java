@@ -6,8 +6,10 @@
 
 package de.quele.proxysystem.commands;
 
+import de.quele.proxysystem.ProxySystem;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.ProxyServer;
+import net.md_5.bungee.api.chat.TextComponent;
 import net.md_5.bungee.api.config.ServerInfo;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.plugin.Command;
@@ -28,7 +30,11 @@ public class ServerCommand extends Command
                 final ServerInfo info = ProxyServer.getInstance().getServerInfo(server);
                 p.connect(info);
 
+            }else {
+                player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§cNutze /serverc <Server>§8!"));
             }
+        }else {
+            player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§cDazu besitzt du keine Berechtigung§8!"));
         }
     }
 }

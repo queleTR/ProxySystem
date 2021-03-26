@@ -22,21 +22,25 @@ public class GlobalChatClearCommand extends Command {
     @Override
     public void execute(CommandSender commandSender, String[] strings) {
         if (commandSender instanceof ProxiedPlayer) {
-            ProxiedPlayer player = (ProxiedPlayer)commandSender;
+            ProxiedPlayer player = (ProxiedPlayer) commandSender;
 
-            if(!(strings.length < 1)) {
-                if (!player.hasPermission("command.use.globalchatclear")) {
-                    player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§cDazu besitzt du keine Berechtigung§8!"));
+            if (player.hasPermission("command.use.globalchatclear")) {
+                if ((strings.length < 1)) {
+                    for (int i = 0; i < 1000; i++) {
+                        ProxyServer.getInstance().broadcast(new TextComponent(" "));
+                    }
+                    ProxyServer.getInstance().broadcast(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "Der Chat wurde von §e" + player.getName() + " §7geleert§8"));
+                    return;
+
+            } else {
+                    player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§cNutze /gcc§8!"));
                     return;
                 }
-                player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§cNutze /gcc §8!"));
+            } else {
+                player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§cDazu besitzt du keine Berechtigung§8!"));
                 return;
             }
 
-            for (int i = 0; i < 1000; i++) {
-                ProxyServer.getInstance().broadcast(new TextComponent(" "));
-            }
-            ProxyServer.getInstance().broadcast(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "Der Chat wurde von §e" + player.getName() + " §7geleert§8"));
         }
     }
 }
