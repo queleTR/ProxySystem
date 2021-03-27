@@ -17,13 +17,13 @@ import net.md_5.bungee.api.plugin.Command;
 public class ServerCommand extends Command
 {
     public ServerCommand() {
-        super("serverc");
+        super("serverconnect", "command.use.serverconnect", "serverc");
     }
 
     public void execute(CommandSender commandSender, String[] strings) {
 
         ProxiedPlayer player = (ProxiedPlayer)commandSender;
-        if (player.hasPermission("command.use.serverc")) {
+//        if (player.hasPermission("command.use.serverc")) {
             if (strings.length == 1) {
                 final String server = strings[0];
                 final ProxiedPlayer p = (ProxiedPlayer)commandSender;
@@ -33,8 +33,8 @@ public class ServerCommand extends Command
             }else {
                 player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§cNutze /serverc <Server>§8!"));
             }
-        }else {
-            player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§cDazu besitzt du keine Berechtigung§8!"));
-        }
+//        }else {
+//            player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§cDazu besitzt du keine Berechtigung§8!"));
+//        }
     }
 }

@@ -17,7 +17,7 @@ import net.md_5.bungee.api.plugin.Command;
 public class BroadcastCommand extends Command {
 
     public BroadcastCommand() {
-        super("bc");
+        super("broadcast", "command.use.broadcast", "bc");
     }
 
     @Override
@@ -25,7 +25,7 @@ public class BroadcastCommand extends Command {
         if (commandSender instanceof ProxiedPlayer) {
             ProxiedPlayer player = (ProxiedPlayer)commandSender;
 
-            if (player.hasPermission("command.use.broadcast")) {
+            //if (player.hasPermission("command.use.broadcast")) {
 
                 if (strings.length > 0) {
                     String message = "";
@@ -40,10 +40,9 @@ public class BroadcastCommand extends Command {
                 } else {
                     player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§c/broadcast <Nachricht>"));
                 }
-            }else {
-                player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§cDazu besitzt du keine Berechtigung§8!"));
-                return;
-            }
+            //}else {
+             //   player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§cDazu besitzt du keine Berechtigung§8!"));
+            //}
         }
     }
 }

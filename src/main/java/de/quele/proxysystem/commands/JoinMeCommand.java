@@ -17,32 +17,33 @@ import java.util.Iterator;
 
 public class JoinMeCommand extends Command {
     public JoinMeCommand() {
-        super("joinme");
+        super("joinme", "command.use.joinme");
     }
 
     public void execute(CommandSender commandSender, String[] strings) {
-        if (commandSender.hasPermission("command.use.joinme")) {
+//        if (commandSender.hasPermission("command.use.joinme")) {
             if (!(strings.length < 1)) {
-                commandSender.sendMessage("§7Der Befehl wird wie folgt genutzt: §a/joinme");
+                commandSender.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§7Der Befehl wird wie folgt genutzt: §a/joinme"));
+
             } else {
-                final Iterator psender = ProxyServer.getInstance().getPlayers().iterator();
-                final ProxiedPlayer ps = (ProxiedPlayer) psender.next();
-                final Iterator pl = ProxyServer.getInstance().getPlayers().iterator();
-                final ProxiedPlayer p = (ProxiedPlayer) pl.next();
+                final Iterator playersender = ProxyServer.getInstance().getPlayers().iterator();
+                final ProxiedPlayer ps = (ProxiedPlayer) playersender.next();
+                final Iterator player2 = ProxyServer.getInstance().getPlayers().iterator();
+                final ProxiedPlayer p = (ProxiedPlayer) player2.next();
                 final String server = p.getServer().getInfo().getName();
-                final TextComponent msg = new TextComponent(String.valueOf("§cZum nachjoinen §4HIER §cklicken"));
+                final TextComponent msg = new TextComponent("§cZum nachjoinen §4HIER §cklicken");
                 msg.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder("§aKlick mich um den Server zu betreten").create()));
                 msg.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/verbinden478474878547854 " + p.getServer().getInfo().getName()));
                 ProxyServer.getInstance().broadcast("§7§k==================================");
                 ProxyServer.getInstance().broadcast("");
                 ProxyServer.getInstance().broadcast("§a" + p.getName() + " §7spielt auf §a" + server);
-                ProxyServer.getInstance().broadcast((BaseComponent) msg);
+                ProxyServer.getInstance().broadcast(msg);
                 ProxyServer.getInstance().broadcast("");
                 ProxyServer.getInstance().broadcast("§7§k==================================");
                 commandSender.sendMessage("§aDu hast den JoinMe Befehl benutzt");
             }
-        } else {
-            commandSender.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§cDazu besitzt du keine Berechtigung§8!"));
-        }
+//        } else {
+//            commandSender.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§cDazu besitzt du keine Berechtigung§8!"));
+//        }
     }
 }

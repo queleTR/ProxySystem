@@ -16,7 +16,8 @@ import net.md_5.bungee.api.plugin.Command;
 public class GlobalChatClearCommand extends Command {
 
     public GlobalChatClearCommand() {
-        super("gcc");
+        super("globalchatclear", "command.use.globalchatclear", "gcc");
+
     }
 
     @Override
@@ -30,15 +31,12 @@ public class GlobalChatClearCommand extends Command {
                         ProxyServer.getInstance().broadcast(new TextComponent(" "));
                     }
                     ProxyServer.getInstance().broadcast(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "Der Chat wurde von §e" + player.getName() + " §7geleert§8"));
-                    return;
 
-            } else {
+                } else {
                     player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§cNutze /gcc§8!"));
-                    return;
                 }
             } else {
                 player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§cDazu besitzt du keine Berechtigung§8!"));
-                return;
             }
 
         }

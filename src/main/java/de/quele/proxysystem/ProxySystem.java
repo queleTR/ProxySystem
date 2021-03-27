@@ -7,6 +7,7 @@
 package de.quele.proxysystem;
 
 import de.quele.proxysystem.commands.*;
+import de.quele.proxysystem.discord.DiscordManager;
 import lombok.SneakyThrows;
 import net.dv8tion.jda.api.JDA;
 import net.md_5.bungee.api.plugin.Plugin;
@@ -15,14 +16,10 @@ import net.md_5.bungee.api.plugin.PluginManager;
 
 public class ProxySystem extends Plugin {
 
-
-
-
     private static ProxySystem proxySystem;
     private final String prefix = "§3Proxy §8» §7";
+//    private static DiscordManager discordManager;
 
-    public static JDA jda;
-    public static String token;
 
     @SneakyThrows
     @Override
@@ -33,9 +30,10 @@ public class ProxySystem extends Plugin {
         this.initCommands();
 
         this.getLogger().info("Plugin successfully activated!");
-        this.getLogger().info(("Coded by quele"));
+        this.getLogger().info("Coded by quele");
 
-        //DiscordManager.buildJDA();
+//        DiscordManager.buildJDA();
+//        discordManager = new DiscordManager();
     }
     private void initListeners() {
         PluginManager pluginManager = this.getProxy().getPluginManager();
@@ -48,11 +46,11 @@ public class ProxySystem extends Plugin {
     pluginManager.registerCommand(this, new GlobalChatClearCommand());
     pluginManager.registerCommand(this, new BroadcastCommand());
     pluginManager.registerCommand(this, new MessageCommand());
-    pluginManager.registerCommand(this, new OkCommand());
     pluginManager.registerCommand(this, new PingCommand());
     pluginManager.registerCommand(this, new JoinMeCommand());
     pluginManager.registerCommand(this, new ServerCommand());
     pluginManager.registerCommand(this, new ServerConnectCommand());
+
     }
 
     @Override
@@ -69,4 +67,9 @@ public class ProxySystem extends Plugin {
     public static ProxySystem getProxySystem() {
         return proxySystem;
     }
+
+/*    public static DiscordManager getDiscordManager() {
+*        return discordManager;
+* }
+*/
 }

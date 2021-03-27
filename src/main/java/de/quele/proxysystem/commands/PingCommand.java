@@ -18,7 +18,7 @@ import java.lang.reflect.InvocationTargetException;
 public class PingCommand extends Command {
 
     public PingCommand() {
-        super("ping");
+        super("ping", "command.use.ping");
 
     }
 
@@ -27,16 +27,16 @@ public class PingCommand extends Command {
         if (commandSender instanceof ProxiedPlayer) {
             ProxiedPlayer player = (ProxiedPlayer) commandSender;
 
-            if (player.hasPermission("command.use.ping")) {
+            //if (player.hasPermission("command.use.ping")) {
                 int ping = player.getPing();
                 if (!(strings.length < 1)) {
                     commandSender.sendMessage("§7Der Befehl wird wie folgt genutzt: §a/ping");
                 } else {
                     player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§7Dein aktueller Ping beträgt§8: §e" + ping + "§7ms"));
                 }
-            }else {
-                player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§cDazu besitzt du keine Berechtigung§8!"));
-            }
+           // }else {
+           //     player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§cDazu besitzt du keine Berechtigung§8!"));
+           // }
         }
     }
 }

@@ -11,20 +11,40 @@ compileJava.options.encoding = "UTF-8"
 compileTestJava.options.encoding = "UTF-8"
 
 repositories {
+    flatDir {
+        dirs('libs')
+    }
     mavenCentral()
     jcenter()
+    mavenLocal()
     maven {
         url 'https://papermc.io/repo/repository/maven-public/'
     }
+    maven {
+        url 'https://jitpack.io'
+    }
+    maven {
+        url "https://plugins.gradle.org/m2/"
+    }
+
 }
 
 dependencies {
+    compileClasspath("com.github.jengelman.gradle.plugins:shadow:6.1.0")
     implementation 'org.projectlombok:lombok:1.18.18'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
-    compileOnly 'io.github.waterfallmc:waterfall-api:1.16-R0.4-SNAPSHOT'
-    implementation('net.dv8tion:JDA:4.2.0_228')
+    compile 'io.github.waterfallmc:waterfall-api:1.16-R0.4-SNAPSHOT'
+    compile 'net.dv8tion:JDA:4.2.0_247'
+    implementation 'net.dv8tion:JDA:4.2.0_247'
+    implementation "com.github.jengelman.gradle.plugins:shadow:6.1.0"
+    compile "com.github.jengelman.gradle.plugins:shadow:6.1.0"
 
+}
+
+
+jar {
+    destinationDir("D:\\Muhammed\\programming\\Minecraft\\Localhost\\Waterfall\\plugins" as File)
 }
 
 test {

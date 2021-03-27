@@ -16,8 +16,7 @@ import net.md_5.bungee.api.plugin.Command;
 public class MessageCommand extends Command {
 
     public MessageCommand() {
-        super("msg");
-
+        super("message", "command.use.message", "msg");
     }
     @Override
     public void execute(CommandSender commandSender, String[] strings) {
@@ -27,7 +26,7 @@ public class MessageCommand extends Command {
             if (strings.length < 1) {
 
                 ProxiedPlayer targetPlayer = ProxyServer.getInstance().getPlayer(strings[0]);
-                if (player.hasPermission("command.use.msg")) {
+//                if (player.hasPermission("command.use.msg")) {
                     if (strings.length == 1) {
                         commandSender.sendMessage("§7Der Befehl wird wie folgt genutzt: §a/msg <Name> <Nachricht>");
                     }
@@ -49,10 +48,9 @@ public class MessageCommand extends Command {
                         player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§7Ich §8» §c" + targetPlayer.getName() + "§r: " + msg));
                         targetPlayer.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§c" + player.getName() + " §8» §7Ich§r:" + msg));
                     }
-                    }else {
-                    player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§cDazu besitzt du keine Berechtigung§8!"));
-                    return;
-                }
+//                    }else {
+//                    player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§cDazu besitzt du keine Berechtigung§8!"));
+//                }
             }
         }
     }
