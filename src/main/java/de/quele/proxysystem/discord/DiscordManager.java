@@ -7,6 +7,7 @@
 package de.quele.proxysystem.discord;
 
 import de.quele.proxysystem.ProxySystem;
+import net.dv8tion.jda.api.AccountType;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.OnlineStatus;
@@ -26,15 +27,9 @@ public class DiscordManager {
 
     public static void buildJDA() {
         try {
-            jda = JDABuilder.createDefault(token).build();
-        } catch (LoginException | IllegalArgumentException e) {
+            jda = new JDABuilder(AccountType.BOT).setToken("NzM4NjgzMDAzODY5NDYyNTgw.XyPeKA.uON-cCyhkV9mDxzYjeerxPTS29s").build();
+        } catch (LoginException e) {
             e.printStackTrace();
         }
-
-        jda.getPresence().setPresence(Activity.listening("nervige Musik"), true);
-        jda.getPresence().setStatus(OnlineStatus.DO_NOT_DISTURB);
-
-        ProxySystem.getProxySystem().getLogger().info("DiscordBot gestartet");
     }
-
 }

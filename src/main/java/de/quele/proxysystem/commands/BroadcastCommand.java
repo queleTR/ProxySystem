@@ -25,24 +25,20 @@ public class BroadcastCommand extends Command {
         if (commandSender instanceof ProxiedPlayer) {
             ProxiedPlayer player = (ProxiedPlayer)commandSender;
 
-            //if (player.hasPermission("command.use.broadcast")) {
 
                 if (strings.length > 0) {
-                    String message = "";
-                    for (int i = 0; i < strings.length; i++) {
-                        message = message + strings[i] + " ";
+                    StringBuilder message = new StringBuilder();
+                    for (String string : strings) {
+                        message.append(string).append(" ");
 
                     }
 
-                    message = ChatColor.translateAlternateColorCodes('&', message);
+                    message = new StringBuilder(ChatColor.translateAlternateColorCodes('&', message.toString()));
                     ProxyServer.getInstance().broadcast(new TextComponent(ProxySystem.getProxySystem().getPrefix() + message));
 
                 } else {
                     player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§c/broadcast <Nachricht>"));
                 }
-            //}else {
-             //   player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§cDazu besitzt du keine Berechtigung§8!"));
-            //}
         }
     }
 }

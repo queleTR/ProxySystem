@@ -9,9 +9,13 @@ package de.quele.proxysystem;
 import de.quele.proxysystem.commands.*;
 import de.quele.proxysystem.discord.DiscordManager;
 import lombok.SneakyThrows;
+import net.dv8tion.jda.api.AccountType;
 import net.dv8tion.jda.api.JDA;
+import net.dv8tion.jda.api.JDABuilder;
 import net.md_5.bungee.api.plugin.Plugin;
 import net.md_5.bungee.api.plugin.PluginManager;
+
+import javax.security.auth.login.LoginException;
 
 
 public class ProxySystem extends Plugin {
@@ -31,10 +35,8 @@ public class ProxySystem extends Plugin {
 
         this.getLogger().info("Plugin successfully activated!");
         this.getLogger().info("Coded by quele");
-
-//        DiscordManager.buildJDA();
-//        discordManager = new DiscordManager();
     }
+
     private void initListeners() {
         PluginManager pluginManager = this.getProxy().getPluginManager();
     }
@@ -45,12 +47,11 @@ public class ProxySystem extends Plugin {
     pluginManager.registerCommand(this, new WhereisCommand());
     pluginManager.registerCommand(this, new GlobalChatClearCommand());
     pluginManager.registerCommand(this, new BroadcastCommand());
-    pluginManager.registerCommand(this, new MessageCommand());
     pluginManager.registerCommand(this, new PingCommand());
     pluginManager.registerCommand(this, new JoinMeCommand());
     pluginManager.registerCommand(this, new ServerCommand());
     pluginManager.registerCommand(this, new ServerConnectCommand());
-
+    pluginManager.registerCommand(this, new HelpCommand());
     }
 
     @Override

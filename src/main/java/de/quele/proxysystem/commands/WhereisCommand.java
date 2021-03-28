@@ -26,8 +26,8 @@ public class WhereisCommand extends Command {
             ProxiedPlayer player = (ProxiedPlayer) commandSender;
 
 //            if (player.hasPermission("command.use.whereis")) {
-                if (!(strings.length < 1)) {
-                    if ((strings.length < 2)) {
+                    if (strings.length == 1) {
+
 
                         ProxiedPlayer targetPlayer = ProxyServer.getInstance().getPlayer(strings[0]);
 
@@ -39,10 +39,7 @@ public class WhereisCommand extends Command {
 
                         player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "Der Spieler §a" + targetPlayer.getName() + " §7befindet sich derzeit auf dem Server §e" + targetPlayer.getServer().getInfo().getName()));
                     }else {
-                        player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§cNutze /whereis <Name>§8!"));
-                    }
-                }else {
-                    player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§cNutze /whereis <Name>§8!"));
+                        player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§cNutze /whereis <Name>§8!"));;
                 }
 //            }else {
 //                player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§cDazu besitzt du keine Berechtigung§8!"));

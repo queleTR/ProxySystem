@@ -4,16 +4,16 @@ plugins {
 
 group 'de.quele'
 version '1.0-SNAPSHOT'
-def jdaVersion = '4.2.0'
+def jdaVersion = '4.1.0_81'
 
 
 compileJava.options.encoding = "UTF-8"
 compileTestJava.options.encoding = "UTF-8"
 
 repositories {
-    flatDir {
-        dirs('libs')
-    }
+//    flatDir
+//    dirs('libs')
+//    }
     mavenCentral()
     jcenter()
     mavenLocal()
@@ -35,8 +35,8 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
     compile 'io.github.waterfallmc:waterfall-api:1.16-R0.4-SNAPSHOT'
-    compile 'net.dv8tion:JDA:4.2.0_247'
-    implementation 'net.dv8tion:JDA:4.2.0_247'
+    compile 'net.dv8tion:JDA:4.1.0_81'
+    implementation 'net.dv8tion:JDA:4.1.0_81 '
     implementation "com.github.jengelman.gradle.plugins:shadow:6.1.0"
     compile "com.github.jengelman.gradle.plugins:shadow:6.1.0"
 

@@ -14,8 +14,7 @@ import net.md_5.bungee.api.config.ServerInfo;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.plugin.Command;
 
-public class ServerCommand extends Command
-{
+public class ServerCommand extends Command {
     public ServerCommand() {
         super("serverconnect", "command.use.serverconnect", "serverc");
     }
@@ -23,8 +22,7 @@ public class ServerCommand extends Command
     public void execute(CommandSender commandSender, String[] strings) {
 
         ProxiedPlayer player = (ProxiedPlayer)commandSender;
-//        if (player.hasPermission("command.use.serverc")) {
-            if (strings.length == 1) {
+        if (strings.length == 1) {
                 final String server = strings[0];
                 final ProxiedPlayer p = (ProxiedPlayer)commandSender;
                 final ServerInfo info = ProxyServer.getInstance().getServerInfo(server);
@@ -32,9 +30,6 @@ public class ServerCommand extends Command
 
             }else {
                 player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§cNutze /serverc <Server>§8!"));
-            }
-//        }else {
-//            player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§cDazu besitzt du keine Berechtigung§8!"));
-//        }
+        }
     }
 }

@@ -21,11 +21,7 @@ public class JoinMeCommand extends Command {
     }
 
     public void execute(CommandSender commandSender, String[] strings) {
-//        if (commandSender.hasPermission("command.use.joinme")) {
-            if (!(strings.length < 1)) {
-                commandSender.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§7Der Befehl wird wie folgt genutzt: §a/joinme"));
-
-            } else {
+        if (strings.length == 0) {
                 final Iterator playersender = ProxyServer.getInstance().getPlayers().iterator();
                 final ProxiedPlayer ps = (ProxiedPlayer) playersender.next();
                 final Iterator player2 = ProxyServer.getInstance().getPlayers().iterator();
@@ -41,9 +37,8 @@ public class JoinMeCommand extends Command {
                 ProxyServer.getInstance().broadcast("");
                 ProxyServer.getInstance().broadcast("§7§k==================================");
                 commandSender.sendMessage("§aDu hast den JoinMe Befehl benutzt");
-            }
-//        } else {
-//            commandSender.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§cDazu besitzt du keine Berechtigung§8!"));
-//        }
+        } else {
+                commandSender.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§7Der Befehl wird wie folgt genutzt: §a/joinme"));
+        }
     }
 }
