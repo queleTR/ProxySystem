@@ -1,7 +1,8 @@
 plugins {
     id 'java'
-}
+    id 'com.github.johnrengelman.shadow' version '6.1.0'
 
+}
 group 'de.quele'
 version '1.0-SNAPSHOT'
 def jdaVersion = '4.1.0_81'
@@ -11,9 +12,6 @@ compileJava.options.encoding = "UTF-8"
 compileTestJava.options.encoding = "UTF-8"
 
 repositories {
-//    flatDir
-//    dirs('libs')
-//    }
     mavenCentral()
     jcenter()
     mavenLocal()
@@ -30,6 +28,11 @@ repositories {
 }
 
 dependencies {
+    shadow localGroovy()
+    shadow 'junit:junit:3.8.2'
+    shadow gradleApi()
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "com.github.jengelman.gradle.plugins:shadow:6.1.0"
     compileClasspath("com.github.jengelman.gradle.plugins:shadow:6.1.0")
     implementation 'org.projectlombok:lombok:1.18.18'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
@@ -38,15 +41,16 @@ dependencies {
     compile 'net.dv8tion:JDA:4.1.0_81'
     implementation 'net.dv8tion:JDA:4.1.0_81 '
     implementation "com.github.jengelman.gradle.plugins:shadow:6.1.0"
-    compile "com.github.jengelman.gradle.plugins:shadow:6.1.0"
 
 }
 
-
-jar {
-    destinationDir("D:\\Muhammed\\programming\\Minecraft\\Localhost\\Waterfall\\plugins" as File)
+shadowJar {
+    archiveBaseName.set('ProxySystem')
+    archiveClassifier.set('SNAPSHOT')
+    archiveVersion.set('1.0')
 }
-
 test {
     useJUnitPlatform()
 }
+apply plugin: 'com.github.johnrengelman.shadow'
+apply plugin: 'java'

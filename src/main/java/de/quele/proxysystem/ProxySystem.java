@@ -32,7 +32,7 @@ public class ProxySystem extends Plugin {
 
         this.initListeners();
         this.initCommands();
-
+        DiscordManager.buildJDA();
         this.getLogger().info("Plugin successfully activated!");
         this.getLogger().info("Coded by quele");
     }

@@ -6,11 +6,12 @@
 
 package de.quele.proxysystem.discord;
 
-import de.quele.proxysystem.ProxySystem;
+import de.quele.proxysystem.discord.commands.PingCommand_Discord;
+import de.quele.proxysystem.discord.core.CommandManager_Discord;
+import de.quele.proxysystem.discord.utils.Config_Discord;
 import net.dv8tion.jda.api.AccountType;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
-import net.dv8tion.jda.api.OnlineStatus;
 import net.dv8tion.jda.api.entities.Activity;
 
 import javax.security.auth.login.LoginException;
@@ -27,9 +28,14 @@ public class DiscordManager {
 
     public static void buildJDA() {
         try {
-            jda = new JDABuilder(AccountType.BOT).setToken("NzM4NjgzMDAzODY5NDYyNTgw.XyPeKA.uON-cCyhkV9mDxzYjeerxPTS29s").build();
+            jda = new JDABuilder(AccountType.BOT).setToken(Config_Discord.TOKEN).build();
         } catch (LoginException e) {
             e.printStackTrace();
         }
+        jda.getPresence().setPresence(Activity.listening("nervige Musik"), true);
+
+        new CommandManager_Discord().load();
+
+        CommandManager_Discord.addCommand(new PingCommand_Discord());
     }
 }
