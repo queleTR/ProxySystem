@@ -6,6 +6,7 @@
 
 package de.quele.proxysystem.events;
 
+import de.hype.perms.utils.RangSQL;
 import de.quele.proxysystem.utils.Constans;
 import net.md_5.bungee.api.ServerPing;
 import net.md_5.bungee.api.chat.TextComponent;
@@ -47,9 +48,13 @@ public class ServerEvents implements Listener {
     @EventHandler
     public void onConnect(LoginEvent event) {
         if(Constans.getMaintenance()) {
-            if(!Constans.getWhitelist().contains(event.getConnection().getUniqueId().toString())) {
-                event.setCancelled(true);
-                event.setCancelReason(new TextComponent("§7Zurzeit befinden wir uns in §cWartungsarbeiten"));
+            if(RangSQL.getRangId(event.getConnection().getUniqueId().toString()) < 9) {
+                if (!Constans.getWhitelist().contains(event.getConnection().getUniqueId().toString())) {
+                    event.setCancelled(true);
+                    event.setCancelReason(new TextComponent("§7Zurzeit befinden wir uns in §cWartungsarbeiten"));
+                } else {
+                    event.setCancelled(false);
+                }
             } else {
                 event.setCancelled(false);
             }
