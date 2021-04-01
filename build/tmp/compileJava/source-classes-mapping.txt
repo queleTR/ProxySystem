@@ -2,14 +2,8 @@ de/quele/proxysystem/events/ProxyEvents.java
  de.quele.proxysystem.events.ProxyEvents
 de/quele/proxysystem/commands/WhereisCommand.java
  de.quele.proxysystem.commands.WhereisCommand
-de/quele/proxysystem/discord/utils/Colors_Discord.java
- de.quele.proxysystem.discord.utils.Colors_Discord
-de/quele/proxysystem/discord/core/Command_Discord.java
- de.quele.proxysystem.discord.core.Command_Discord
 de/quele/proxysystem/commands/PingCommand.java
  de.quele.proxysystem.commands.PingCommand
-de/quele/proxysystem/discord/commands/PingCommand_Discord.java
- de.quele.proxysystem.discord.commands.PingCommand_Discord
 de/quele/proxysystem/commands/TeamChatCommand.java
  de.quele.proxysystem.commands.TeamChatCommand
 de/quele/proxysystem/commands/ServerCommand.java
@@ -28,17 +22,9 @@ de/quele/proxysystem/events/ServerEvents.java
  de.quele.proxysystem.events.ServerEvents
 de/quele/proxysystem/commands/ServerConnectCommand.java
  de.quele.proxysystem.commands.ServerConnectCommand
-de/quele/proxysystem/discord/core/CommandManager_Discord.java
- de.quele.proxysystem.discord.core.CommandManager_Discord
-de/quele/proxysystem/discord/DiscordManager.java
- de.quele.proxysystem.discord.DiscordManager
 de/quele/proxysystem/ProxySystem.java
  de.quele.proxysystem.ProxySystem
 de/quele/proxysystem/commands/BroadcastCommand.java
  de.quele.proxysystem.commands.BroadcastCommand
-de/quele/proxysystem/discord/commands/HelpCommand_Discord.java
- de.quele.proxysystem.discord.commands.HelpCommand_Discord
-de/quele/proxysystem/discord/utils/Config_Discord.java
- de.quele.proxysystem.discord.utils.Config_Discord
 de/quele/proxysystem/commands/HelpCommand.java
  de.quele.proxysystem.commands.HelpCommand
