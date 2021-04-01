@@ -31,8 +31,8 @@ public class RangSQL {
         }
     }
 
-    public static void setDiscordId(ProxiedPlayer player, Long id) {
-        MySQL.update("UPDATE rang SET DiscordId = '" + id + "' WHERE UUID = '" + player.getUniqueId().toString() + "'");
+    public static void setDiscordId(String uuid, String id) {
+       de.hype.perms.utils.MySQL.update("UPDATE rang SET DiscordId= '" + id + "' WHERE UUID= '" + uuid + "'");
     }
 
     public static Rang getRang(String uuid) {

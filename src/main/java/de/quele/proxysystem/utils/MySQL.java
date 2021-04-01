@@ -29,6 +29,28 @@ public class MySQL {
         }
     }
 
+    public static void createTable() {
+        update("CREATE TABLE IF NOT EXISTS bungee_datas (maintenance BOOLEAN NOT NULL, whitelist VARCHAR(64000) NOT NULL);");
+
+        if(!defaultValueSet()) {
+            MySQL.update("INSERT INTO bungee_datas(maintenance, whitelist) VALUES ('0', '')");
+        }
+    }
+
+    public static boolean defaultValueSet() {
+        try {
+            ResultSet resultSet = MySQL.getResult("SELECT * FROM bungee_datas");
+
+            assert resultSet != null;
+            if(resultSet.next()) {
+                return resultSet.getString("maintenance") != null;
+            }
+        } catch(SQLException ignored) {
+
+        }
+        return false;
+    }
+
     public static ResultSet getResult(String qry) {
         if (isConnected()) {
             try {

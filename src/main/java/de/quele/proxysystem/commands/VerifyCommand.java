@@ -25,7 +25,8 @@ public class VerifyCommand extends Command {
             ProxiedPlayer player = (ProxiedPlayer)commandSender;
 
             if (strings.length == 1) {
-                RangSQL.setDiscordId(player, Long.parseLong(strings[0]));
+                RangSQL.setDiscordId(player.getUniqueId().toString(), strings[0]);
+                player.sendMessage(new TextComponent("Discordregister durchgeführt"));
             } else {
                 player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§c/verify <DiscordId>"));
             }
