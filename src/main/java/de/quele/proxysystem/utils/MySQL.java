@@ -92,4 +92,36 @@ public class MySQL {
         return null;
     }
 
+    public static Object get(String select, String database) {
+
+        ResultSet rs = getResult("SELECT " + select + " FROM " + database + "");
+        try {
+            assert rs != null;
+            if (rs.next()) {
+                return rs.getObject(select);
+            }
+        } catch (SQLException e) {
+            return "ERROR";
+        }
+
+        ProxyServer.getInstance().getConsole().sendMessage("§cCould not load Data.");
+        return "ERROR";
+    }
+
+    public static Object get(String select, String database, String where, String whereresult) {
+
+        ResultSet rs = getResult("SELECT " + select + " FROM " + database + " WHERE " + where + "='" + whereresult + "'");
+        try {
+            assert rs != null;
+            if (rs.next()) {
+                return rs.getObject(select);
+            }
+        } catch (SQLException e) {
+            return "ERROR";
+        }
+
+        ProxyServer.getInstance().getConsole().sendMessage("§cCould not load Data.");
+        return "ERROR";
+    }
+
 }

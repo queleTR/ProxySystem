@@ -9,6 +9,7 @@ package de.quele.proxysystem.events;
 import de.quele.proxysystem.utils.Constans;
 import net.md_5.bungee.api.ServerPing;
 import net.md_5.bungee.api.chat.TextComponent;
+import net.md_5.bungee.api.event.LoginEvent;
 import net.md_5.bungee.api.event.ProxyPingEvent;
 import net.md_5.bungee.api.plugin.Listener;
 import net.md_5.bungee.event.EventHandler;
@@ -23,7 +24,7 @@ public class ServerEvents implements Listener {
         ServerPing.Players players = ping.getPlayers();
         ServerPing.PlayerInfo playerInfo1 = new ServerPing.PlayerInfo("§8§m          §8[§6HypeTime§8]§8§m          ", UUID.randomUUID());
         ServerPing.PlayerInfo playerInfo2 = new ServerPing.PlayerInfo("§6Website§8: §aHypeTime.eu", UUID.randomUUID());
-        ServerPing.PlayerInfo playerInfo3 = new ServerPing.PlayerInfo("§6TeamSpeak§8: §aHypeTime.eu", UUID.randomUUID());
+        ServerPing.PlayerInfo playerInfo3 = new ServerPing.PlayerInfo("§6Teampeak§8: §aHypeTime.eu", UUID.randomUUID());
         ServerPing.PlayerInfo playerInfo4 = new ServerPing.PlayerInfo("§6Forum§8: §aForum.HypeTime.EU", UUID.randomUUID());
         ServerPing.PlayerInfo playerInfo5 = new ServerPing.PlayerInfo("§8§m          §8[§6HypeTime§8]§8§m          ", UUID.randomUUID());
         ServerPing.PlayerInfo[] allPlayer = {playerInfo1, playerInfo2, playerInfo3, playerInfo4, playerInfo5};
@@ -40,6 +41,18 @@ public class ServerEvents implements Listener {
             ping.setVersion(new ServerPing.Protocol("HypeTime.EU", ping.getVersion().getProtocol()));
             ping.setDescriptionComponent(new TextComponent("§8» §6§lHypeTimeEU §8| §7Fall into the Hype §aツ\n" +
                     "§8» §aNews§8: RELEASE§8! \n"));
+        }
+    }
+
+    @EventHandler
+    public void onConnect(LoginEvent event) {
+        if(Constans.getMaintenance()) {
+            if(!Constans.getWhitelist().contains(event.getConnection().getUniqueId().toString())) {
+                event.setCancelled(true);
+                event.setCancelReason(new TextComponent("§7Zurzeit befinden wir uns in §cWartungsarbeiten"));
+            } else {
+                event.setCancelled(false);
+            }
         }
     }
 }
