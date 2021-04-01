@@ -92,13 +92,13 @@ public class MySQL {
         return null;
     }
 
-    public static Object get(String select, String database) {
+    public static Object get(String select, String database, String what) {
 
         ResultSet rs = getResult("SELECT " + select + " FROM " + database + "");
         try {
             assert rs != null;
             if (rs.next()) {
-                return rs.getObject(select);
+                return rs.getObject(what);
             }
         } catch (SQLException e) {
             return "ERROR";

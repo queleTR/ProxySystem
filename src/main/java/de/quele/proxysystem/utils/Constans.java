@@ -39,11 +39,11 @@ public class Constans {
     }
 
     public static String getWhitelistRaw() {
-        return String.valueOf(MySQL.get("*", "bungee_datas"));
+        return String.valueOf(MySQL.get("*", "bungee_datas", "whitelist"));
     }
 
     public static ArrayList<String> getWhitelist() {
-        String whitelist = String.valueOf(MySQL.get("*", "bungee_datas"));
+        String whitelist = String.valueOf(MySQL.get("*", "bungee_datas", "whitelist"));
         ArrayList<String> toreturn = Lists.newArrayList();
         if(whitelist.isEmpty())
             return toreturn;
@@ -52,14 +52,14 @@ public class Constans {
         return toreturn;
     }
 
-    public void addFriend(String uuid) {
+    public static void addPlayer(String uuid) {
         String whitelist = getWhitelistRaw();
         whitelist = whitelist + uuid + ";";
 
         MySQL.update("UPDATE bungee_datas SET whitelist='" + whitelist + "'");
     }
 
-    public void removePlayer(String uuid) {
+    public static void removePlayer(String uuid) {
         String whitelist = getWhitelistRaw();
         whitelist = whitelist.replace(uuid + ";", "");
 

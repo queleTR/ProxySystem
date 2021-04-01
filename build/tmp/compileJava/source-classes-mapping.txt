@@ -28,14 +28,14 @@ de/quele/proxysystem/commands/WhereamiCommand.java
  de.quele.proxysystem.commands.WhereamiCommand
 de/quele/proxysystem/commands/VerifyCommand.java
  de.quele.proxysystem.commands.VerifyCommand
+de/quele/proxysystem/utils/MySQL.java
+ de.quele.proxysystem.utils.MySQL
+de/quele/proxysystem/utils/RangSQL.java
+ de.quele.proxysystem.utils.RangSQL
 de/quele/proxysystem/commands/WartungCommand.java
  de.quele.proxysystem.commands.WartungCommand
 de/quele/proxysystem/utils/Constans.java
  de.quele.proxysystem.utils.Constans
-de/quele/proxysystem/utils/RangSQL.java
- de.quele.proxysystem.utils.RangSQL
-de/quele/proxysystem/utils/MySQL.java
- de.quele.proxysystem.utils.MySQL
 de/quele/proxysystem/events/ServerEvents.java
  de.quele.proxysystem.events.ServerEvents
 de/quele/proxysystem/ProxySystem.java
