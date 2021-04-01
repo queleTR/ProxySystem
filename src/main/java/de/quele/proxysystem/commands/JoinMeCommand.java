@@ -6,6 +6,8 @@
 
 package de.quele.proxysystem.commands;
 
+import de.hype.perms.HypePermsBungee;
+import de.hype.perms.utils.RangSQL;
 import de.quele.proxysystem.ProxySystem;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.ProxyServer;
@@ -21,7 +23,9 @@ public class JoinMeCommand extends Command {
     }
 
     public void execute(CommandSender commandSender, String[] strings) {
-        if (strings.length == 0) {
+        ProxiedPlayer player = (ProxiedPlayer) commandSender;
+        if (RangSQL.getRangId(player.getUniqueId().toString()) < 3) {
+            if (strings.length == 0) {
                 final Iterator playersender = ProxyServer.getInstance().getPlayers().iterator();
                 final ProxiedPlayer ps = (ProxiedPlayer) playersender.next();
                 final Iterator player2 = ProxyServer.getInstance().getPlayers().iterator();
@@ -37,8 +41,11 @@ public class JoinMeCommand extends Command {
                 ProxyServer.getInstance().broadcast("");
                 ProxyServer.getInstance().broadcast("§7§k==================================");
                 commandSender.sendMessage("§aDu hast den JoinMe Befehl benutzt");
-        } else {
+            } else {
                 commandSender.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§7Der Befehl wird wie folgt genutzt: §a/joinme"));
+            }
+        }else {
+            player.sendMessage(HypePermsBungee.getInstance().getPrefix() + "§7Nicht genug §cRechte§8.");
         }
     }
 }

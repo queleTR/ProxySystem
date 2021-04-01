@@ -6,6 +6,8 @@
 
 package de.quele.proxysystem.commands;
 
+import de.hype.perms.HypePermsBungee;
+import de.hype.perms.utils.RangSQL;
 import de.quele.proxysystem.ProxySystem;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.chat.TextComponent;
@@ -18,7 +20,7 @@ import java.lang.reflect.InvocationTargetException;
 public class PingCommand extends Command {
 
     public PingCommand() {
-        super("ping", "command.use.ping");
+        super("ping");
 
     }
 
@@ -27,13 +29,16 @@ public class PingCommand extends Command {
         if (commandSender instanceof ProxiedPlayer) {
             ProxiedPlayer player = (ProxiedPlayer) commandSender;
 
-            //if (player.hasPermission("command.use.ping")) {
+            if (RangSQL.getRangId(player.getUniqueId().toString()) < 0) {
                 int ping = player.getPing();
-            if (strings.length == 0) {
-                player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§7Dein aktueller Ping beträgt§8: §e" + ping + "§7ms"));
+                if (strings.length == 0) {
+                    player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§7Dein aktueller Ping beträgt§8: §e" + ping + "§7ms"));
                 } else {
-                commandSender.sendMessage("§7Der Befehl wird wie folgt genutzt: §a/ping");
+                    commandSender.sendMessage("§7Der Befehl wird wie folgt genutzt: §a/ping");
                 }
+            }else {
+                player.sendMessage(HypePermsBungee.getInstance().getPrefix() + "§7Nicht genug §cRechte§8.");
+            }
         }
     }
 }

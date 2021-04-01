@@ -6,6 +6,7 @@
 
 package de.quele.proxysystem.discord;
 
+import de.quele.proxysystem.discord.commands.HelpCommand_Discord;
 import de.quele.proxysystem.discord.commands.PingCommand_Discord;
 import de.quele.proxysystem.discord.core.CommandManager_Discord;
 import de.quele.proxysystem.discord.utils.Config_Discord;
@@ -36,6 +37,8 @@ public class DiscordManager {
 
         new CommandManager_Discord().load();
 
+        // Command register
         CommandManager_Discord.addCommand(new PingCommand_Discord());
+        CommandManager_Discord.addCommand(new HelpCommand_Discord());
     }
 }

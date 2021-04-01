@@ -9,20 +9,16 @@ package de.quele.proxysystem;
 import de.quele.proxysystem.commands.*;
 import de.quele.proxysystem.discord.DiscordManager;
 import lombok.SneakyThrows;
-import net.dv8tion.jda.api.AccountType;
-import net.dv8tion.jda.api.JDA;
-import net.dv8tion.jda.api.JDABuilder;
 import net.md_5.bungee.api.plugin.Plugin;
 import net.md_5.bungee.api.plugin.PluginManager;
 
-import javax.security.auth.login.LoginException;
 
 
 public class ProxySystem extends Plugin {
 
+
     private static ProxySystem proxySystem;
     private final String prefix = "§3Proxy §8» §7";
-//    private static DiscordManager discordManager;
 
 
     @SneakyThrows
@@ -68,9 +64,4 @@ public class ProxySystem extends Plugin {
     public static ProxySystem getProxySystem() {
         return proxySystem;
     }
-
-/*    public static DiscordManager getDiscordManager() {
-*        return discordManager;
-* }
-*/
 }

@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id 'com.github.johnrengelman.shadow' version '6.1.0'
+    id 'maven'
 
 }
 group 'de.quele'
@@ -10,6 +11,14 @@ def jdaVersion = '4.1.0_81'
 
 compileJava.options.encoding = "UTF-8"
 compileTestJava.options.encoding = "UTF-8"
+
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+}
 
 repositories {
     mavenCentral()
@@ -25,13 +34,16 @@ repositories {
         url "https://plugins.gradle.org/m2/"
     }
 
+    flatDir {
+        dirs 'build/libs'
+    }
 }
 
 dependencies {
     shadow localGroovy()
     shadow 'junit:junit:3.8.2'
     shadow gradleApi()
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(dir: 'build/libs', include: ['*.jar'])
     implementation "com.github.jengelman.gradle.plugins:shadow:6.1.0"
     compileClasspath("com.github.jengelman.gradle.plugins:shadow:6.1.0")
     implementation 'org.projectlombok:lombok:1.18.18'
@@ -39,6 +51,8 @@ dependencies {
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
     compile 'io.github.waterfallmc:waterfall-api:1.16-R0.4-SNAPSHOT'
     compile 'net.dv8tion:JDA:4.1.0_81'
+    compile 'de.hype.perms:HypePermsBungee:1.0-SNAPSHOT'
+    implementation 'de.hype.perms:HypePermsBungee:1.0-SNAPSHOT'
     implementation 'net.dv8tion:JDA:4.1.0_81 '
     implementation "com.github.jengelman.gradle.plugins:shadow:6.1.0"
 
@@ -46,11 +60,14 @@ dependencies {
 
 shadowJar {
     archiveBaseName.set('ProxySystem')
-    archiveClassifier.set('SNAPSHOT')
+    archiveClassifie.set('SNAPSHOT')
     archiveVersion.set('1.0')
+    destinationDir("D:\\Muhammed\\programming\\Minecraft\\Localhost\\Waterfall\\plugins" as File)
 }
+
 test {
     useJUnitPlatform()
 }
+
 apply plugin: 'com.github.johnrengelman.shadow'
 apply plugin: 'java'

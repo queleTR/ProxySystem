@@ -6,6 +6,8 @@
 
 package de.quele.proxysystem.commands;
 
+import de.hype.perms.HypePermsBungee;
+import de.hype.perms.utils.RangSQL;
 import de.quele.proxysystem.ProxySystem;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.ProxyServer;
@@ -16,20 +18,24 @@ import net.md_5.bungee.api.plugin.Command;
 
 public class ServerCommand extends Command {
     public ServerCommand() {
-        super("serverconnect", "command.use.serverconnect", "serverc");
+        super("serverconnect", null, "serverc");
     }
 
     public void execute(CommandSender commandSender, String[] strings) {
 
-        ProxiedPlayer player = (ProxiedPlayer)commandSender;
-        if (strings.length == 1) {
+        ProxiedPlayer player = (ProxiedPlayer) commandSender;
+        if (RangSQL.getRangId(player.getUniqueId().toString()) < 6) {
+            if (strings.length == 1) {
                 final String server = strings[0];
-                final ProxiedPlayer p = (ProxiedPlayer)commandSender;
+                final ProxiedPlayer p = (ProxiedPlayer) commandSender;
                 final ServerInfo info = ProxyServer.getInstance().getServerInfo(server);
                 p.connect(info);
 
-            }else {
+            } else {
                 player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§cNutze /serverc <Server>§8!"));
+            }
+        }else {
+            player.sendMessage(HypePermsBungee.getInstance().getPrefix() + "§7Nicht genug §cRechte§8.");
         }
     }
 }

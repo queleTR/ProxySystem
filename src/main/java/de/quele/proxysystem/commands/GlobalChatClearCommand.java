@@ -6,6 +6,8 @@
 
 package de.quele.proxysystem.commands;
 
+import de.hype.perms.HypePermsBungee;
+import de.hype.perms.utils.RangSQL;
 import de.quele.proxysystem.ProxySystem;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.ProxyServer;
@@ -16,8 +18,7 @@ import net.md_5.bungee.api.plugin.Command;
 public class GlobalChatClearCommand extends Command {
 
     public GlobalChatClearCommand() {
-        super("globalchatclear", "command.use.globalchatclear", "gcc");
-
+        super("globalchatclear", null, "gcc");
     }
 
     @Override
@@ -25,20 +26,18 @@ public class GlobalChatClearCommand extends Command {
         if (commandSender instanceof ProxiedPlayer) {
             ProxiedPlayer player = (ProxiedPlayer) commandSender;
 
-            if (player.hasPermission("command.use.globalchatclear")) {
-                if ((strings.length < 1)) {
-                    for (int i = 0; i < 1000; i++) {
-                        ProxyServer.getInstance().broadcast(new TextComponent(" "));
-                    }
-                    ProxyServer.getInstance().broadcast(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "Der Chat wurde von §e" + player.getName() + " §7geleert§8"));
-
-                } else {
-                    player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§cNutze /gcc§8!"));
-                }
-            } else {
-                player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§cDazu besitzt du keine Berechtigung§8!"));
+            if (RangSQL.getRangId(player.getUniqueId().toString()) < 7) {
+                player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§7Nicht genug §cRechte§8."));
+                return;
             }
-
+            if ((strings.length < 1)) {
+                for (int i = 0; i < 1000; i++) {
+                    ProxyServer.getInstance().broadcast(new TextComponent(" "));
+                }
+                ProxyServer.getInstance().broadcast(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "Der Chat wurde von §e" + player.getName() + " §7geleert§8"));
+            } else {
+                player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§cNutze /gcc§8!"));
+            }
         }
     }
 }

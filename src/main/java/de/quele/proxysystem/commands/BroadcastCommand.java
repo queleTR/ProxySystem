@@ -6,6 +6,9 @@
 
 package de.quele.proxysystem.commands;
 
+import de.hype.perms.HypePermsBungee;
+import de.hype.perms.utils.Rang;
+import de.hype.perms.utils.RangSQL;
 import de.quele.proxysystem.ProxySystem;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.CommandSender;
@@ -17,7 +20,7 @@ import net.md_5.bungee.api.plugin.Command;
 public class BroadcastCommand extends Command {
 
     public BroadcastCommand() {
-        super("broadcast", "command.use.broadcast", "bc");
+        super("broadcast", null, "bc");
     }
 
     @Override
@@ -25,8 +28,11 @@ public class BroadcastCommand extends Command {
         if (commandSender instanceof ProxiedPlayer) {
             ProxiedPlayer player = (ProxiedPlayer)commandSender;
 
-
-                if (strings.length > 0) {
+            if (RangSQL.getRangId(player.getUniqueId().toString()) < 7) {
+                player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§7Nicht genug §cRechte§8."));
+                return;
+            }
+            if (strings.length > 0) {
                     StringBuilder message = new StringBuilder();
                     for (String string : strings) {
                         message.append(string).append(" ");
@@ -35,6 +41,7 @@ public class BroadcastCommand extends Command {
 
                     message = new StringBuilder(ChatColor.translateAlternateColorCodes('&', message.toString()));
                     ProxyServer.getInstance().broadcast(new TextComponent(ProxySystem.getProxySystem().getPrefix() + message));
+
 
                 } else {
                     player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§c/broadcast <Nachricht>"));
