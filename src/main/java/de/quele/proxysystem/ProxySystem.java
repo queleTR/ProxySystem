@@ -7,6 +7,7 @@
 package de.quele.proxysystem;
 
 import de.quele.proxysystem.commands.*;
+import de.quele.proxysystem.events.ServerEvents;
 import de.quele.proxysystem.utils.MySQL;
 import lombok.SneakyThrows;
 import net.md_5.bungee.api.plugin.Plugin;
@@ -44,6 +45,7 @@ public class ProxySystem extends Plugin {
 
     private void initCommands() {
         PluginManager pluginManager = this.getProxy().getPluginManager();
+        //Commands
         pluginManager.registerCommand(this, new WhereamiCommand());
         pluginManager.registerCommand(this, new WhereisCommand());
         pluginManager.registerCommand(this, new GlobalChatClearCommand());
@@ -55,6 +57,9 @@ public class ProxySystem extends Plugin {
         pluginManager.registerCommand(this, new HelpCommand());
         pluginManager.registerCommand(this, new VerifyCommand());
         pluginManager.registerCommand(this, new WartungCommand());
+
+        //Listener
+        pluginManager.registerListener(this, new ServerEvents());
     }
 
     @Override
