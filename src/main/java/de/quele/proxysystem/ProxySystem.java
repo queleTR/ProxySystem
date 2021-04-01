@@ -7,7 +7,6 @@
 package de.quele.proxysystem;
 
 import de.quele.proxysystem.commands.*;
-import de.quele.proxysystem.discord.DiscordManager;
 import lombok.SneakyThrows;
 import net.md_5.bungee.api.plugin.Plugin;
 import net.md_5.bungee.api.plugin.PluginManager;
@@ -28,7 +27,6 @@ public class ProxySystem extends Plugin {
 
         this.initListeners();
         this.initCommands();
-        DiscordManager.buildJDA();
         this.getLogger().info("Plugin successfully activated!");
         this.getLogger().info("Coded by quele");
     }

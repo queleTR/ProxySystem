@@ -7,9 +7,9 @@
   <version>1.0-SNAPSHOT</version>
   <dependencies>
     <dependency>
-      <groupId>io.github.waterfallmc</groupId>
-      <artifactId>waterfall-api</artifactId>
-      <version>1.16-R0.4-SNAPSHOT</version>
+      <groupId>net.dv8tion</groupId>
+      <artifactId>JDA</artifactId>
+      <version>4.1.0_81</version>
       <scope>compile</scope>
     </dependency>
     <dependency>
@@ -29,12 +29,6 @@
       <artifactId>lombok</artifactId>
       <version>1.18.18</version>
       <scope>runtime</scope>
-    </dependency>
-    <dependency>
-      <groupId>net.dv8tion</groupId>
-      <artifactId>JDA</artifactId>
-      <version>4.1.0_81 </version>
-      <scope>compile</scope>
     </dependency>
     <dependency>
       <groupId>org.junit.jupiter</groupId>
