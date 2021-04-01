@@ -41,6 +41,13 @@ dependencies {
 
 }
 
+jar {
+    archiveBaseName.set('ProxySystem')
+    archiveClassifier.set('SNAPSHOT')
+    archiveVersion.set('1.0')
+    destinationDir("D:\\Muhammed\\programming\\Minecraft\\Localhost\\Waterfall\\plugins" as File)
+}
+
 test {
     useJUnitPlatform()
 }
