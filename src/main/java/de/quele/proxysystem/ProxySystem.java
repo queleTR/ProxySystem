@@ -58,6 +58,8 @@ public class ProxySystem extends Plugin {
         pluginManager.registerCommand(this, new VerifyCommand());
         pluginManager.registerCommand(this, new WartungCommand());
         pluginManager.registerCommand(this, new WListCommand());
+        pluginManager.registerCommand(this, new GetIPCommand());
+        pluginManager.registerCommand(this, new TeamChatCommand());
 
         //Listener
         pluginManager.registerListener(this, new ServerEvents());
