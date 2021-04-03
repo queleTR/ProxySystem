@@ -25,7 +25,7 @@ public class RestartCommand extends Command {
     public RestartCommand() {
         super("restart");
     }
-    private int count = 60;
+    private int count = 61;
 
     @Override
     public void execute(CommandSender commandSender, String[] strings) {
@@ -38,40 +38,31 @@ public class RestartCommand extends Command {
                     TimerTask task = new TimerTask() {
                         @Override
                         public void run() {
-                            if (count <= 60) {
+                            if (count <= 61) {
                                 count--;
                             }
-                            if (count == 59) {
-                                ProxyServer.getInstance().broadcast("");
-                                ProxyServer.getInstance().broadcast("");
-                                ProxyServer.getInstance().broadcast(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§7Der Server startet in §6einer Minute §7neu."));
-                                ProxyServer.getInstance().broadcast("");
-                                ProxyServer.getInstance().broadcast("");
-                            }
-                            if (count == 30) {
-                                ProxyServer.getInstance().broadcast("");
-                                ProxyServer.getInstance().broadcast(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§7Der Server startet in §630 Sekunden §7neu."));
-                                ProxyServer.getInstance().broadcast("");
-                            }
-                            if (count <= 10) {
-                                if (!(count == 1)) {
-                                    ProxyServer.getInstance().broadcast("");
-                                    ProxyServer.getInstance().broadcast(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§7Der Server startet in §6" + count + " Sekunden §7neu."));
-                                    ProxyServer.getInstance().broadcast("");
-                                }else {
-                                    ProxyServer.getInstance().broadcast("");
-                                    ProxyServer.getInstance().broadcast(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§7Der Server startet in §6" + count + " Sekunde §7neu."));
-                                    ProxyServer.getInstance().broadcast("");
-
-                                }
-                            }
-                            if (count == 0) {
-                                ProxyServer.getInstance().broadcast("ok");
-                                timer.cancel();
-                                ProxyServer.getInstance().stop(
-                                        "§8§m------------------" +
-                                                "\n §6§lHypeTimeEU §7wird neugestartet§8." +
-                                                "\n§8§m------------------");
+                            switch(count) {
+                                case 60:
+                                    ProxyServer.getInstance().broadcast(new TextComponent(ProxySystem.getProxySystem().getPrefix()
+                                            + "\n\n§7Der Server startet in §6einer Minute §7neu§8.\n\n"));
+                                    break;
+                                case 59: case 30: case 15: case 10: case 5: case 4: case 3: case 2:
+                                    ProxyServer.getInstance().broadcast(new TextComponent(ProxySystem.getProxySystem().getPrefix()
+                                            + "\n\n§7Der Server startet in §630 Sekunden §7neu§8.\n\n"));
+                                    break;
+                                case 1:
+                                    ProxyServer.getInstance().broadcast(new TextComponent(ProxySystem.getProxySystem().getPrefix()
+                                            + "\n\n§7Der Server startet in §6" + count + " Sekunde §7neu§8.\n\n"));
+                                    break;
+                                case 0:
+                                    ProxyServer.getInstance().broadcast(new TextComponent(ProxySystem.getProxySystem().getPrefix()
+                                            + "\n\n§7Der Server startet sich nun neu§8.\n\n"));
+                                    timer.cancel();
+                                    ProxyServer.getInstance().stop(
+                                            "§8§m------------------" +
+                                                    "\n §6§lHypeTimeEU §7wird neugestartet§8." +
+                                                    "\n§8§m------------------");
+                                    break;
                             }
                         }
                     };

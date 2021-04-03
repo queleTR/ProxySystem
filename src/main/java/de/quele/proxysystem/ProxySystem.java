@@ -21,7 +21,6 @@ public class ProxySystem extends Plugin {
 
 
     public static ProxySystem proxySystem;
-    private final String prefix = "§3Proxy §8» §7";
 
     @SneakyThrows
     @Override
@@ -75,7 +74,7 @@ public class ProxySystem extends Plugin {
     }
 
     public String getPrefix() {
-        return prefix;
+        return "§6Proxy §8» §7";
     }
 
     public static ProxySystem getProxySystem() {
