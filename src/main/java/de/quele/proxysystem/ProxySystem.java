@@ -1,5 +1,5 @@
 /*
- * Created by quele | Muhammed
+ * Created by quele | Muhammed QuadrixYT | André
  * Copyright (C) all rights reserved.
  * Website: http://quele.live
  */
