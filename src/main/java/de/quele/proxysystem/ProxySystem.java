@@ -41,6 +41,9 @@ public class ProxySystem extends Plugin {
 
     private void initListeners() {
         PluginManager pluginManager = this.getProxy().getPluginManager();
+
+        //Listener
+        pluginManager.registerListener(this, new ServerEvents());
     }
 
     private void initCommands() {
@@ -62,8 +65,6 @@ public class ProxySystem extends Plugin {
         pluginManager.registerCommand(this, new TeamChatCommand());
         pluginManager.registerCommand(this, new RestartCommand());
 
-        //Listener
-        pluginManager.registerListener(this, new ServerEvents());
     }
 
     @Override
