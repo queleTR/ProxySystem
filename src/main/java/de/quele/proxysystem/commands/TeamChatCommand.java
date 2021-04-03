@@ -34,8 +34,7 @@ public class TeamChatCommand extends Command {
             if (!(RangSQL.getRangId(player.getUniqueId().toString()) < 7)) {
             if (strings.length >= 1) {
                 StringBuilder msg = new StringBuilder();
-                for (int i = 0; i < strings.length; i++)
-                    msg.append(strings[i]).append(" ");
+                for (String string : strings) msg.append(string).append(" ");
                 msg = new StringBuilder(ChatColor.translateAlternateColorCodes('&', msg.toString()));
                 for (ProxiedPlayer player2 : ProxyServer.getInstance().getPlayers()) {
                     player2.sendMessage(new TextComponent("§cTeamChat §8| §7" + RangSQL.getRangName((player).getUniqueId().toString()) + " " + commandSender.getName()
@@ -46,7 +45,6 @@ public class TeamChatCommand extends Command {
             }
             }else {
                 player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§7Nicht genug §cRechte§8."));
-                return;
             }
         }
     }

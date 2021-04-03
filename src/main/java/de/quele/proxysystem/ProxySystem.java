@@ -13,14 +13,15 @@ import lombok.SneakyThrows;
 import net.md_5.bungee.api.plugin.Plugin;
 import net.md_5.bungee.api.plugin.PluginManager;
 
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class ProxySystem extends Plugin {
 
 
-    private static ProxySystem proxySystem;
+    public static ProxySystem proxySystem;
     private final String prefix = "§3Proxy §8» §7";
-
 
     @SneakyThrows
     @Override
@@ -60,6 +61,7 @@ public class ProxySystem extends Plugin {
         pluginManager.registerCommand(this, new WListCommand());
         pluginManager.registerCommand(this, new GetIPCommand());
         pluginManager.registerCommand(this, new TeamChatCommand());
+        pluginManager.registerCommand(this, new RestartCommand());
 
         //Listener
         pluginManager.registerListener(this, new ServerEvents());
