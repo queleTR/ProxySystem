@@ -37,12 +37,13 @@ public class JoinMeCommand extends Command {
                 if(Datas.joinme.containsKey(player)) {
                     if(Datas.joinme.get(player) < System.currentTimeMillis()) {
                         for (ProxiedPlayer allPlayers : ProxyServer.getInstance().getPlayers()) {
-                            String joinMeMessage = " §6" + player.getName() + " §7spielt auf §a" + player.getServer().getInfo().getName();
+                            String rangprefix = RangSQL.getRang(player.getUniqueId().toString()).getPrefix();
+                            String joinMeMessage = " §6" + rangprefix + player.getName() + " §7spielt auf §a" + player.getServer().getInfo().getName();
                             TextComponent clickableJoin = new TextComponent(" §7Klicke §ahier §7um den §6Server §7zu §abetreten§8.");
                             clickableJoin.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/hWeI7w42l " + player.getName()));
                             try {
                                 ImageUtil.createImageUtil().sendImageMessage(allPlayers, player.getUniqueId().toString(), new TextComponent(joinMeMessage), clickableJoin);
-                                Datas.joinme.put(player, System.currentTimeMillis() + 1000 * 60 * 5);
+                                Datas.joinme.put(player, System.currentTimeMillis() + 1000 * 60 * 30);
                             } catch (IOException e) {
                                 e.printStackTrace();
                             }
@@ -54,12 +55,13 @@ public class JoinMeCommand extends Command {
                     }
                 } else {
                     for (ProxiedPlayer allPlayers : ProxyServer.getInstance().getPlayers()) {
-                        String joinMeMessage = " §6" + player.getName() + " §7spielt auf §a" + player.getServer().getInfo().getName();
+                        String rangprefix = RangSQL.getRang(player.getUniqueId().toString()).getPrefix();
+                        String joinMeMessage = " §6" + rangprefix + player.getName() + " §7spielt auf §a" + player.getServer().getInfo().getName();
                         TextComponent clickableJoin = new TextComponent(" §7Klicke §ahier §7um den §6Server §7zu §abetreten§8.");
                         clickableJoin.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/hWeI7w42l " + player.getName()));
                         try {
                             ImageUtil.createImageUtil().sendImageMessage(allPlayers, player.getUniqueId().toString(), new TextComponent(joinMeMessage), clickableJoin);
-                            Datas.joinme.put(player, System.currentTimeMillis() + 1000 * 60 * 5);
+                            Datas.joinme.put(player, System.currentTimeMillis() + 1000 * 60 * 30);
                         } catch (IOException e) {
                             e.printStackTrace();
                         }

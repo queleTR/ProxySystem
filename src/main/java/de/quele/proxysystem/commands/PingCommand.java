@@ -29,7 +29,7 @@ public class PingCommand extends Command {
         if (commandSender instanceof ProxiedPlayer) {
             ProxiedPlayer player = (ProxiedPlayer) commandSender;
 
-            if (RangSQL.getRangId(player.getUniqueId().toString()) < 0) {
+            if (RangSQL.getRangId(player.getUniqueId().toString()) > 0) {
                 int ping = player.getPing();
                 if (strings.length == 0) {
                     player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§7Dein aktueller Ping beträgt§8: §e" + ping + "§7ms"));

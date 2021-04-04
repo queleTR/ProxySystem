@@ -21,7 +21,7 @@ public class HelpCommand extends Command {
     public void execute(CommandSender commandSender, String[] strings) {
         ProxiedPlayer player = (ProxiedPlayer) commandSender;
 
-        if (RangSQL.getRangId(player.getUniqueId().toString()) < 0) {
+        if (RangSQL.getRangId(player.getUniqueId().toString()) > 0) {
             if (strings.length == 0) {
                 commandSender.sendMessage("HELP");
             } else {
