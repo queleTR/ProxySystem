@@ -41,7 +41,7 @@ public class BroadcastCommand extends Command {
 
                     message = new StringBuilder(ChatColor.translateAlternateColorCodes('&', message.toString()));
                     for(ProxiedPlayer all : ProxyServer.getInstance().getPlayers()) {
-                        ProxySystem.getProxySystem().getLanguageManager().sendMessageCustom(all, String.valueOf("%prefix%" + message));
+                       // ProxySystem.getProxySystem().getLanguageManager().sendMessageCustom(all, String.valueOf("%prefix%" + message));
                     }
 
 

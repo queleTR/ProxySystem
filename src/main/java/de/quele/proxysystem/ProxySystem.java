@@ -17,7 +17,7 @@ import net.md_5.bungee.api.plugin.PluginManager;
 public class ProxySystem extends Plugin {
 
     public static ProxySystem proxySystem;
-    private LanguageManager languageManager;
+    //private LanguageManager languageManager;
 
     @SneakyThrows
     @Override
@@ -26,9 +26,9 @@ public class ProxySystem extends Plugin {
 
         getDataFolder().mkdirs();
 
-        LanguageManager.pluginName = "ProxySysten";
-        languageManager = new LanguageManager();
-        languageManager.setPrefix("%fcolor%Proxy §8» §7");
+        //LanguageManager.pluginName = "ProxySysten";
+        //languageManager = new LanguageManager();
+        //languageManager.setPrefix("%fcolor%Proxy §8» §7");
 
         this.initListeners();
         this.initCommands();
@@ -85,7 +85,7 @@ public class ProxySystem extends Plugin {
         return proxySystem;
     }
 
-    public LanguageManager getLanguageManager() {
+    /*public LanguageManager getLanguageManager() {
         return languageManager;
-    }
+    }*/
 }
