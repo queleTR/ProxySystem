@@ -34,7 +34,7 @@ public class ServerEvents implements Listener {
         players.setSample(allPlayer);
 
         String percent = "5%";
-        String completed = "§cJetzt verbinden §8»»»                                   §aWartungsarbeiten §6Fortschritt§8: §c" + percent;
+        String completed = "§cJetzt verbinden §8»»»                                §aWartungsarbeiten §6Fortschritt§8: §c" + percent;
 
         if(Constans.getMaintenance()) {
             ping.setVersion(new ServerPing.Protocol(completed, ping.getVersion().getProtocol() - 1));
