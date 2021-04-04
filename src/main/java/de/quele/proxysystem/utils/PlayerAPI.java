@@ -33,13 +33,14 @@ public class PlayerAPI {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd.MM HH:mm");
         if(!(playerExists(player))) {
             MySQL.update("INSERT INTO user(Player, UUID, IPAdress, FirstJoin, LastJoin) VALUES" +
-                    " ('" + player.getName() +
-                    "', '" + player.getUniqueId().toString() +
-                    "', '" + player.getSocketAddress().toString() +
-                    "', '" + simpleDateFormat.format(System.currentTimeMillis()) +
-                    "', '" + simpleDateFormat.format(System.currentTimeMillis()) + ")");
+                    " ('" + player.getName() + "'," +
+                    " '" + player.getUniqueId().toString() +"'," +
+                    " '" + player.getSocketAddress().toString() + "'," +
+                    " '" + simpleDateFormat.format(System.currentTimeMillis()) + "'," +
+                    " '" + simpleDateFormat.format(System.currentTimeMillis()) + "')");
         } else {
-            ProxyServer.getInstance().getConsole().sendMessage("User existiert bereits");
+            MySQL.update("UPDATE user SET Player = '" + player.getName() + "' WHERE UUID = '" + player.getUniqueId().toString() + "'");
+            updateLastJoin(player);
         }
     }
 

@@ -9,43 +9,74 @@ package de.quele.proxysystem.commands;
 import de.hype.perms.HypePermsBungee;
 import de.hype.perms.utils.RangSQL;
 import de.quele.proxysystem.ProxySystem;
+import de.quele.proxysystem.utils.Datas;
+import de.quele.proxysystem.utils.ImageUtil;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.chat.*;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.plugin.Command;
 
-import java.util.Iterator;
+import java.io.IOException;
+
 
 public class JoinMeCommand extends Command {
     public JoinMeCommand() {
-        super("joinme", "command.use.joinme");
+        super("joinme");
     }
 
-    public void execute(CommandSender commandSender, String[] strings) {
-        ProxiedPlayer player = (ProxiedPlayer) commandSender;
-        if (RangSQL.getRangId(player.getUniqueId().toString()) < 3) {
-            if (strings.length == 0) {
-                final Iterator playersender = ProxyServer.getInstance().getPlayers().iterator();
-                final ProxiedPlayer ps = (ProxiedPlayer) playersender.next();
-                final Iterator player2 = ProxyServer.getInstance().getPlayers().iterator();
-                final ProxiedPlayer p = (ProxiedPlayer) player2.next();
-                final String server = p.getServer().getInfo().getName();
-                final TextComponent msg = new TextComponent("§cZum nachjoinen §4HIER §cklicken");
-                msg.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new ComponentBuilder("§aKlick mich um den Server zu betreten").create()));
-                msg.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/verbinden478474878547854 " + p.getServer().getInfo().getName()));
-                ProxyServer.getInstance().broadcast("§7§k==================================");
-                ProxyServer.getInstance().broadcast("");
-                ProxyServer.getInstance().broadcast("§a" + p.getName() + " §7spielt auf §a" + server);
-                ProxyServer.getInstance().broadcast(msg);
-                ProxyServer.getInstance().broadcast("");
-                ProxyServer.getInstance().broadcast("§7§k==================================");
-                commandSender.sendMessage("§aDu hast den JoinMe Befehl benutzt");
+    @Override
+    public void execute(CommandSender sender, String[] args) {
+        if(sender instanceof ProxiedPlayer) {
+            ProxiedPlayer player = (ProxiedPlayer) sender;
+            if(RangSQL.getRangId(player.getUniqueId().toString()) > 3) {
+                if(player.getServer().getInfo().getName().contains("Lobby")) {
+                    player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§7Du darfst diesen Befehl §cnicht §7auf der §6Lobby §7ausführen§8."));
+                    return;
+                }
+                if(Datas.joinme.containsKey(player)) {
+                    if(Datas.joinme.get(player) < System.currentTimeMillis()) {
+                        for (ProxiedPlayer allPlayers : ProxyServer.getInstance().getPlayers()) {
+                            String joinMeMessage = " §6" + player.getName() + " §7spielt auf §a" + player.getServer().getInfo().getName();
+                            TextComponent clickableJoin = new TextComponent(" §7Klicke §ahier §7um den §6Server §7zu §abetreten§8.");
+                            clickableJoin.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/hWeI7w42l " + player.getName()));
+                            try {
+                                ImageUtil.createImageUtil().sendImageMessage(allPlayers, player.getUniqueId().toString(), new TextComponent(joinMeMessage), clickableJoin);
+                                Datas.joinme.put(player, System.currentTimeMillis() + 1000 * 60 * 5);
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    } else {
+                        player.sendMessage(new TextComponent("§7Bitte warte §6" +
+                                formatSeconds(System.currentTimeMillis() - Datas.joinme.get(player))
+                                + " §7bis du erneut einen §6JoinMe §7erstellen kannst"));
+                    }
+                } else {
+                    for (ProxiedPlayer allPlayers : ProxyServer.getInstance().getPlayers()) {
+                        String joinMeMessage = " §6" + player.getName() + " §7spielt auf §a" + player.getServer().getInfo().getName();
+                        TextComponent clickableJoin = new TextComponent(" §7Klicke §ahier §7um den §6Server §7zu §abetreten§8.");
+                        clickableJoin.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/hWeI7w42l " + player.getName()));
+                        try {
+                            ImageUtil.createImageUtil().sendImageMessage(allPlayers, player.getUniqueId().toString(), new TextComponent(joinMeMessage), clickableJoin);
+                            Datas.joinme.put(player, System.currentTimeMillis() + 1000 * 60 * 5);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+
             } else {
-                commandSender.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§7Der Befehl wird wie folgt genutzt: §a/joinme"));
+                player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§7Keine Rechte§8."));
             }
-        }else {
-            player.sendMessage(HypePermsBungee.getInstance().getPrefix() + "§7Nicht genug §cRechte§8.");
         }
+    }
+
+    String formatSeconds(long millis)
+    {
+        int seconds = (int) (millis / 1000);
+        int minutes = seconds / 60;
+        seconds %= 60;
+        return String.format("%02d:%02d", minutes, seconds).replace("-", "");
     }
 }

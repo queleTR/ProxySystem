@@ -6,8 +6,10 @@
 
 package de.quele.proxysystem.commands;
 
+import de.quele.proxysystem.ProxySystem;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.ProxyServer;
+import net.md_5.bungee.api.chat.TextComponent;
 import net.md_5.bungee.api.config.ServerInfo;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.plugin.Command;
@@ -15,15 +17,22 @@ import net.md_5.bungee.api.plugin.Command;
 public class ServerConnectCommand extends Command
 {
     public ServerConnectCommand() {
-        super("verbinden478474878547854");
+        super("hWeI7w42l");
     }
 
-    public void execute(final CommandSender sender, final String[] args) {
+    public void execute(CommandSender sender, String[] args) {
         if (args.length == 1) {
-            final String server = args[0];
-            final ProxiedPlayer p = (ProxiedPlayer)sender;
-            final ServerInfo info = ProxyServer.getInstance().getServerInfo(server);
-            p.connect(info);
+            ProxiedPlayer player = (ProxiedPlayer)sender;
+            ProxiedPlayer target = ProxyServer.getInstance().getPlayer(args[0]);
+            if (target != null) {
+                if(target != player) {
+                    player.connect(target.getServer().getInfo());
+                } else {
+                    player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§7Du kannst deinen eigenen §6JoinMe §7nicht benutzen"));
+                }
+            } else {
+                player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§7Der §7Spieler §7ist nicht online!"));
+            }
         }
     }
 }
