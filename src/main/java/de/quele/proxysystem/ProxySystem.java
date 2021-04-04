@@ -13,19 +13,22 @@ import lombok.SneakyThrows;
 import net.md_5.bungee.api.plugin.Plugin;
 import net.md_5.bungee.api.plugin.PluginManager;
 
-import java.util.ArrayList;
-import java.util.List;
-
 
 public class ProxySystem extends Plugin {
 
-
     public static ProxySystem proxySystem;
+    private LanguageManager languageManager;
 
     @SneakyThrows
     @Override
     public void onEnable() {
         proxySystem = this;
+
+        getDataFolder().mkdirs();
+
+        LanguageManager.pluginName = "ProxySysten";
+        languageManager = new LanguageManager();
+        languageManager.setPrefix("%fcolor%Proxy §8» §7");
 
         this.initListeners();
         this.initCommands();
@@ -80,5 +83,9 @@ public class ProxySystem extends Plugin {
 
     public static ProxySystem getProxySystem() {
         return proxySystem;
+    }
+
+    public LanguageManager getLanguageManager() {
+        return languageManager;
     }
 }

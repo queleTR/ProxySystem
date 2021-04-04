@@ -40,7 +40,9 @@ public class BroadcastCommand extends Command {
                     }
 
                     message = new StringBuilder(ChatColor.translateAlternateColorCodes('&', message.toString()));
-                    ProxyServer.getInstance().broadcast(new TextComponent(ProxySystem.getProxySystem().getPrefix() + message));
+                    for(ProxiedPlayer all : ProxyServer.getInstance().getPlayers()) {
+                        ProxySystem.getProxySystem().getLanguageManager().sendMessageCustom(all, String.valueOf("%prefix%" + message));
+                    }
 
 
                 } else {

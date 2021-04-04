@@ -39,7 +39,7 @@ dependencies {
     compile 'io.github.waterfallmc:waterfall-api:1.16-R0.4-SNAPSHOT'
     compile 'de.hype.perms:HypePermsBungee:1.0-SNAPSHOT'
     compile 'de.proxy.hypedcbot.discord:HypeDCBot:1.0-SNAPSHOT'
-    compile 'de.hype.api:HypeAPI:1.0-SNAPSHOT'
+    compile 'de.hype.api:HypeAPIBungee:1.0-SNAPSHOT'
     implementation 'de.proxy.hypedcbot.discord:HypeDCBot:1.0-SNAPSHOT'
     implementation 'de.hype.perms:HypePermsBungee:1.0-SNAPSHOT'
     implementation 'de.hype.api:HypeAPIBungee:1.0-SNAPSHOT'
