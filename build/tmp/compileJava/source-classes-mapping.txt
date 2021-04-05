@@ -4,12 +4,12 @@ de/quele/proxysystem/commands/WartungCommand.java
  de.quele.proxysystem.commands.WartungCommand
 de/quele/proxysystem/commands/VerifyCommand.java
  de.quele.proxysystem.commands.VerifyCommand
+de/quele/proxysystem/utils/RangSQL.java
+ de.quele.proxysystem.utils.RangSQL
 de/quele/proxysystem/commands/ServerCommand.java
  de.quele.proxysystem.commands.ServerCommand
 de/quele/proxysystem/commands/JoinMeCommand.java
  de.quele.proxysystem.commands.JoinMeCommand
-de/quele/proxysystem/commands/KickCommand.java
- de.quele.proxysystem.commands.KickCommand
 de/quele/proxysystem/commands/ProxySystemCommand.java
  de.quele.proxysystem.commands.ProxySystemCommand
 de/quele/proxysystem/events/ChatEvents.java
@@ -35,8 +35,8 @@ de/quele/proxysystem/utils/Datas.java
  de.quele.proxysystem.utils.Datas
 de/quele/proxysystem/commands/PingCommand.java
  de.quele.proxysystem.commands.PingCommand
-de/quele/proxysystem/commands/TeamChatCommand.java
- de.quele.proxysystem.commands.TeamChatCommand
+de/quele/proxysystem/utils/MySQL.java
+ de.quele.proxysystem.utils.MySQL
 de/quele/proxysystem/commands/WListCommand.java
  de.quele.proxysystem.commands.WListCommand
 de/quele/proxysystem/commands/WhereamiCommand.java
@@ -51,11 +51,11 @@ de/quele/proxysystem/utils/UUIDFetcher.java
  de.quele.proxysystem.utils.UUIDFetcher
 de/quele/proxysystem/utils/UUIDTypeAdapter.java
  de.quele.proxysystem.utils.UUIDTypeAdapter
-de/quele/proxysystem/ProxySystem.java
- de.quele.proxysystem.ProxySystem
-de/quele/proxysystem/utils/MySQL.java
- de.quele.proxysystem.utils.MySQL
-de/quele/proxysystem/utils/RangSQL.java
- de.quele.proxysystem.utils.RangSQL
 de/quele/proxysystem/utils/Constans.java
  de.quele.proxysystem.utils.Constans
+de/quele/proxysystem/utils/Translator.java
+ de.quele.proxysystem.utils.Translator
+de/quele/proxysystem/ProxySystem.java
+ de.quele.proxysystem.ProxySystem
+de/quele/proxysystem/commands/TeamChatCommand.java
+ de.quele.proxysystem.commands.TeamChatCommand

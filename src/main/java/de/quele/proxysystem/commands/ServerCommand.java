@@ -6,6 +6,7 @@
 
 package de.quele.proxysystem.commands;
 
+import de.hype.api.HypeAPI;
 import de.hype.perms.HypePermsBungee;
 import de.hype.perms.utils.RangSQL;
 import de.quele.proxysystem.ProxySystem;
@@ -24,7 +25,7 @@ public class ServerCommand extends Command {
     public void execute(CommandSender commandSender, String[] strings) {
 
         ProxiedPlayer player = (ProxiedPlayer) commandSender;
-        if (RangSQL.getRangId(player.getUniqueId().toString()) < 6) {
+        if (RangSQL.getRangId(player.getUniqueId().toString()) > 6) {
             if (strings.length == 1) {
                 final String server = strings[0];
                 final ProxiedPlayer p = (ProxiedPlayer) commandSender;
@@ -32,10 +33,14 @@ public class ServerCommand extends Command {
                 p.connect(info);
 
             } else {
-                player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§cNutze /serverc <Server>§8!"));
+                if (HypeAPI.getInstance().getPlayerManager().getLanguage(player) == 0) {
+                    player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§cUse /serverconnect <server> or /serverc <server>"));
+                } else {
+                    player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§cNutze /serverconnect <Server> oder /serverc <Server>"));
+                }
             }
         }else {
-            player.sendMessage(HypePermsBungee.getInstance().getPrefix() + "§7Nicht genug §cRechte§8.");
+            ProxySystem.getProxySystem().getLanguageManager().sendMessage(player, "noperms");
         }
     }
 }

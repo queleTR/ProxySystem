@@ -6,6 +6,7 @@
 
 package de.quele.proxysystem.commands;
 
+import de.hype.api.HypeAPI;
 import de.hype.perms.utils.RangSQL;
 import de.quele.proxysystem.ProxySystem;
 import de.quele.proxysystem.utils.Constans;
@@ -28,22 +29,34 @@ public class WartungCommand extends Command {
                 if(RangSQL.getRangId(player.getUniqueId().toString()) > 6) {
                     if(Constans.getMaintenance()) {
                         Constans.setMaintenance(false);
-                        player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§7Wartungen §cdeaktiviert"));
+                        player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§7Maintenance §cdisabled"));
                     } else {
                         Constans.setMaintenance(true);
-                        player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§7Wartungen §aaktiviert"));
+                        player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§7Maintenance §aactivated"));
                     }
                 } else {
-                    player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§7Nicht genug §cRechte§8!"));
+                    ProxySystem.getProxySystem().getLanguageManager().sendMessage(player, "noperms");
                 }
             } else {
                 if(Constans.getMaintenance()) {
                     Constans.setMaintenance(false);
-                    sender.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§7Wartungen §cdeaktiviert"));
+                    sender.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§7Maintenance §cdisabled"));
                 } else {
                     Constans.setMaintenance(true);
-                    sender.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§7Wartungen §aaktiviert"));
+                    sender.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§7Maintenance §aactivated"));
                 }
+            }
+        }else {
+            if(sender instanceof ProxiedPlayer) {
+                ProxiedPlayer player = (ProxiedPlayer) sender;
+
+                if (HypeAPI.getInstance().getPlayerManager().getLanguage(player) == 0) {
+                    player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§cUse /wartung"));
+                } else {
+                    player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§cNutze /wartung"));
+                }
+            } else {
+                sender.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§cUse wartung"));
             }
         }
     }

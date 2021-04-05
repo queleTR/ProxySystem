@@ -6,6 +6,8 @@
 
 package de.quele.proxysystem.commands;
 
+import de.hype.api.HypeAPI;
+import de.hype.api.utils.LanguageManager;
 import de.hype.perms.HypePermsBungee;
 import de.hype.perms.utils.Rang;
 import de.hype.perms.utils.RangSQL;
@@ -29,7 +31,7 @@ public class BroadcastCommand extends Command {
             ProxiedPlayer player = (ProxiedPlayer)commandSender;
 
             if (RangSQL.getRangId(player.getUniqueId().toString()) < 7) {
-                player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§7Nicht genug §cRechte§8."));
+                ProxySystem.getProxySystem().getLanguageManager().sendMessage(player, "noperms");
                 return;
             }
             if (strings.length > 0) {
@@ -41,13 +43,17 @@ public class BroadcastCommand extends Command {
 
                     message = new StringBuilder(ChatColor.translateAlternateColorCodes('&', message.toString()));
                     for(ProxiedPlayer all : ProxyServer.getInstance().getPlayers()) {
-                       // ProxySystem.getProxySystem().getLanguageManager().sendMessageCustom(all, String.valueOf("%prefix%" + message));
+                        ProxySystem.getProxySystem().getLanguageManager().sendMessageCustom(all, "%prefix% " + message);
                     }
 
 
+            } else {
+                if (HypeAPI.getInstance().getPlayerManager().getLanguage(player) == 0) {
+                    player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§cUse /broadcast <message>"));
                 } else {
-                    player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§c/broadcast <Nachricht>"));
+                    player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§cNutze /broadcast <Nachricht>"));
                 }
+            }
         }
     }
 }

@@ -6,6 +6,7 @@
 
 package de.quele.proxysystem.commands;
 
+import de.hype.api.HypeAPI;
 import de.proxy.hypedcbot.discord.DiscordManager;
 import de.quele.proxysystem.ProxySystem;
 import de.quele.proxysystem.utils.RangSQL;
@@ -34,7 +35,11 @@ public class VerifyCommand extends Command {
                     privateChannel.sendMessage("Please write #verify").queue();
                 });
             } else {
-                player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§c/verify <DiscordId>"));
+                if (HypeAPI.getInstance().getPlayerManager().getLanguage(player) == 0) {
+                    player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§cUse /verify <DiscordID>"));
+                } else {
+                    player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§cNutze /verify <DiscordID>"));
+                }
             }
         }
     }

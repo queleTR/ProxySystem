@@ -6,6 +6,7 @@
 
 package de.quele.proxysystem.commands;
 
+import de.hype.api.HypeAPI;
 import de.hype.perms.utils.RangSQL;
 import de.quele.proxysystem.ProxySystem;
 import net.md_5.bungee.api.ChatColor;
@@ -60,7 +61,7 @@ public class RestartCommand extends Command {
                                     timer.cancel();
                                     ProxyServer.getInstance().stop(
                                             "§8§m                                        " +
-                                                    "\n§6§lHypeTimeEU §7wird neugestartet§8." +
+                                                    "\n§6§lHypeTimeEU §7is restarting§8." +
                                                     "\n§8§m                                        ");
                                     break;
                             }
@@ -68,10 +69,14 @@ public class RestartCommand extends Command {
                     };
                     timer.schedule(task, 0, 1000);
                 } else {
-                    player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§c/restart"));
+                    if (HypeAPI.getInstance().getPlayerManager().getLanguage(player) == 0) {
+                        player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§cUse /restart"));
+                    } else {
+                        player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§cNutze /restart"));
+                    }
                 }
             } else {
-                player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§7Nicht genug §cRechte§8."));
+                ProxySystem.getProxySystem().getLanguageManager().sendMessage(player, "noperms");
             }
         }
     }

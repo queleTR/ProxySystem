@@ -6,6 +6,7 @@
 
 package de.quele.proxysystem.commands;
 
+import de.hype.api.HypeAPI;
 import de.hype.perms.utils.RangSQL;
 import de.quele.proxysystem.ProxySystem;
 import de.quele.proxysystem.utils.Constans;
@@ -21,7 +22,7 @@ import java.util.UUID;
 public class WListCommand extends Command {
 
     public WListCommand() {
-        super("wlist");
+        super("wlist", null, "whitelist");
     }
 
     @Override
@@ -47,7 +48,11 @@ public class WListCommand extends Command {
                             Constans.removePlayer(target.getUniqueId().toString());
                             player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§7Der Spieler §6" + target.getName() + " §7wurde von der §aWhitelist §6entfernt§8."));
                         } else {
-                            player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§7Falsche Nutzung."));
+                            if (HypeAPI.getInstance().getPlayerManager().getLanguage(player) == 0) {
+                                player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§cUse /wlist add/rem <name>"));
+                            } else {
+                                player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§cNutze /wlist add/rem <Name>"));
+                            }
                         }
                     } else {
                         UUID uuid = UUIDFetcher.getUUID(args[1]);
@@ -66,11 +71,15 @@ public class WListCommand extends Command {
                             }
                             player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§7Der Spieler §6" + playername + " §7wurde von der §aWhitelist §6entfernt§8."));
                         } else {
-                            player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§7Falsche Nutzung."));
+                            if (HypeAPI.getInstance().getPlayerManager().getLanguage(player) == 0) {
+                                player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§cUse /wlist add/rem <name>"));
+                            } else {
+                                player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§cNutze /wlist add/rem <Name>"));
+                            }
                         }
                     }
                 } else {
-                    player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§7Nicht genug §cRechte§8!"));
+                    ProxySystem.getProxySystem().getLanguageManager().sendMessage(player, "noperms");
                 }
             } else {
                 ProxiedPlayer target = ProxyServer.getInstance().getPlayer(args[1]);
@@ -90,7 +99,7 @@ public class WListCommand extends Command {
                         Constans.removePlayer(target.getUniqueId().toString());
                         sender.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§7Der Spieler §6" + target.getName() + " §7wurde von der §aWhitelist §6entfernt§8."));
                     } else {
-                        sender.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§7Falsche Nutzung."));
+                        sender.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§cUse /wlist add/rem <name>"));
                     }
                 } else {
                     UUID uuid = UUIDFetcher.getUUID(args[1]);
@@ -109,9 +118,21 @@ public class WListCommand extends Command {
                         }
                         sender.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§7Der Spieler §6" + playername + " §7wurde von der §aWhitelist §6entfernt§8."));
                     } else {
-                        sender.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§7Falsche Nutzung."));
+                        sender.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§cUse /wlist add/rem <name>"));
                     }
                 }
+            }
+        } else {
+            if(sender instanceof ProxiedPlayer) {
+                ProxiedPlayer player = (ProxiedPlayer) sender;
+
+                if (HypeAPI.getInstance().getPlayerManager().getLanguage(player) == 0) {
+                    player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§cUse /wlist add/rem <name>"));
+                } else {
+                    player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§cNutze /wlist add/rem <Name>"));
+                }
+            } else {
+                sender.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§cUse /wlist add/rem <name>"));
             }
         }
     }

@@ -31,7 +31,7 @@ public class MySQL {
 
     public static void createTable() {
         update("CREATE TABLE IF NOT EXISTS bungee_datas (maintenance BOOLEAN NOT NULL, whitelist VARCHAR(64000) NOT NULL);");
-
+        update("CREATE TABLE IF NOT EXISTS user (Player VARCHAR(64) UNIQUE, UUID VARCHAR(64), IPAdress VARCHAR(64), FirstJoin VARCHAR(64), LastJoin VARCHAR(64));");
         if(!defaultValueSet()) {
             MySQL.update("INSERT INTO bungee_datas(maintenance, whitelist) VALUES ('0', '')");
         }

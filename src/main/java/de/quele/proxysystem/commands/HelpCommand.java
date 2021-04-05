@@ -6,11 +6,18 @@
 
 package de.quele.proxysystem.commands;
 
+import com.google.common.collect.Lists;
+import de.hype.api.HypeAPI;
 import de.hype.perms.HypePermsBungee;
 import de.hype.perms.utils.RangSQL;
+import de.quele.proxysystem.ProxySystem;
 import net.md_5.bungee.api.CommandSender;
+import net.md_5.bungee.api.chat.TextComponent;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.plugin.Command;
+
+import java.util.Arrays;
+import java.util.Collections;
 
 public class HelpCommand extends Command {
 
@@ -23,12 +30,20 @@ public class HelpCommand extends Command {
 
         if (RangSQL.getRangId(player.getUniqueId().toString()) > 0) {
             if (strings.length == 0) {
-                commandSender.sendMessage("HELP");
+                if (HypeAPI.getInstance().getPlayerManager().getLanguage(player) == 0) {
+                    player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "HELP"));
+                }else{
+                    player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "HILFE"));
+                }
             } else {
-                commandSender.sendMessage("§4§klk §7Bitte schreibe §e/help");
+                if (HypeAPI.getInstance().getPlayerManager().getLanguage(player) == 0) {
+                    player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§cUse /help"));
+                } else {
+                    player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§cNutze /help"));
+                }
             }
         } else {
-            player.sendMessage(HypePermsBungee.getInstance().getPrefix() + "§7Nicht genug §cRechte§8.");
+            ProxySystem.getProxySystem().getLanguageManager().sendMessage(player, "noperms");
         }
     }
 }

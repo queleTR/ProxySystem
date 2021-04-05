@@ -6,6 +6,7 @@
 
 package de.quele.proxysystem.commands;
 
+import de.hype.api.HypeAPI;
 import de.hype.perms.HypePermsBungee;
 import de.hype.perms.utils.RangSQL;
 import de.quele.proxysystem.ProxySystem;
@@ -27,16 +28,26 @@ public class GlobalChatClearCommand extends Command {
             ProxiedPlayer player = (ProxiedPlayer) commandSender;
 
             if (RangSQL.getRangId(player.getUniqueId().toString()) < 7) {
-                player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§7Nicht genug §cRechte§8."));
+                ProxySystem.getProxySystem().getLanguageManager().sendMessage(player, "noperms");
                 return;
             }
             if ((strings.length < 1)) {
                 for (int i = 0; i < 1000; i++) {
                     ProxyServer.getInstance().broadcast(new TextComponent(" "));
                 }
-                ProxyServer.getInstance().broadcast(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "Der Chat wurde von §e" + player.getName() + " §7geleert§8"));
+                for (ProxiedPlayer all : ProxyServer.getInstance().getPlayers()) {
+                    if (HypeAPI.getInstance().getPlayerManager().getLanguage(all) == 0) {
+                        HypeAPI.getInstance().getLangManager().sendMessageCustom(all, "The chat was cleared by §e" + player.getName() + "§8.");
+                    } else {
+                        HypeAPI.getInstance().getLangManager().sendMessageCustom(all, "Der Chat wurde von §e" + player.getName() + " §7geleert§8");
+                    }
+                }
             } else {
-                player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§cNutze /gcc§8!"));
+                if (HypeAPI.getInstance().getPlayerManager().getLanguage(player) == 0) {
+                    player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§cUse /gcc or /globalchatclear"));
+                } else {
+                    player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§cNutze /gcc oder /globalchatclear"));
+                }
             }
         }
     }

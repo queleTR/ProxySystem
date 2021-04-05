@@ -6,6 +6,7 @@
 
 package de.quele.proxysystem;
 
+import de.hype.api.utils.LanguageManager;
 import de.quele.proxysystem.commands.*;
 import de.quele.proxysystem.events.ServerEvents;
 import de.quele.proxysystem.utils.MySQL;
@@ -17,7 +18,7 @@ import net.md_5.bungee.api.plugin.PluginManager;
 public class ProxySystem extends Plugin {
 
     public static ProxySystem proxySystem;
-    //private LanguageManager languageManager;
+    private LanguageManager languageManager;
 
     @SneakyThrows
     @Override
@@ -26,9 +27,9 @@ public class ProxySystem extends Plugin {
 
         getDataFolder().mkdirs();
 
-        //LanguageManager.pluginName = "ProxySysten";
-        //languageManager = new LanguageManager();
-        //languageManager.setPrefix("%fcolor%Proxy §8» §7");
+        LanguageManager.pluginName = "ProxySystem";
+        languageManager = new LanguageManager();
+        languageManager.setPrefix("%fcolor%HypeTime.EU §8»§7");
 
         this.initListeners();
         this.initCommands();
@@ -40,6 +41,15 @@ public class ProxySystem extends Plugin {
         MySQL.connect();
 
         MySQL.createTable();
+
+        languageManager.addMessage(0, "noperms", "%prefix% No §cpermissions§8.");
+        languageManager.addMessage(1, "noperms", "%prefix% Keine §cRechte§8.");
+
+        languageManager.addMessage(0, "notonline", "%prefix% The player is currently %scolor%not §7online§8.");
+        languageManager.addMessage(1, "notonline", "%prefix% Der Spieler ist derzeit %scolor%nicht §7online§8.");
+
+        languageManager.addMessage(0, "ip", "%prefix% The IP of %target% is %ip%§8.");
+        languageManager.addMessage(1, "ip", "%prefix% Die IP von %target% lautet %ip%§8.");
     }
 
     private void initListeners() {
@@ -85,7 +95,7 @@ public class ProxySystem extends Plugin {
         return proxySystem;
     }
 
-    /*public LanguageManager getLanguageManager() {
+    public LanguageManager getLanguageManager() {
         return languageManager;
-    }*/
+    }
 }

@@ -6,6 +6,7 @@
 
 package de.quele.proxysystem.commands;
 
+import de.hype.api.HypeAPI;
 import de.hype.perms.HypePermsBungee;
 import de.hype.perms.utils.RangSQL;
 import de.quele.proxysystem.ProxySystem;
@@ -34,10 +35,14 @@ public class PingCommand extends Command {
                 if (strings.length == 0) {
                     player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§7Dein aktueller Ping beträgt§8: §e" + ping + "§7ms"));
                 } else {
-                    commandSender.sendMessage("§7Der Befehl wird wie folgt genutzt: §a/ping");
+                    if (HypeAPI.getInstance().getPlayerManager().getLanguage(player) == 0) {
+                        player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§cUse /ping"));
+                    } else {
+                        player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§cNutze /ping"));
+                    }
                 }
             }else {
-                player.sendMessage(HypePermsBungee.getInstance().getPrefix() + "§7Nicht genug §cRechte§8.");
+                ProxySystem.getProxySystem().getLanguageManager().sendMessage(player, "noperms");
             }
         }
     }

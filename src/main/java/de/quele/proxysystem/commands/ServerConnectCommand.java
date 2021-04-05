@@ -6,6 +6,7 @@
 
 package de.quele.proxysystem.commands;
 
+import de.hype.api.HypeAPI;
 import de.quele.proxysystem.ProxySystem;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.ProxyServer;
@@ -28,10 +29,14 @@ public class ServerConnectCommand extends Command
                 if(target != player) {
                     player.connect(target.getServer().getInfo());
                 } else {
-                    player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§7Du kannst deinen eigenen §6JoinMe §7nicht benutzen"));
+                    if(HypeAPI.getInstance().getPlayerManager().getLanguage(player) == 0) {
+                        player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§7You cannot use your own §6JoinMe§8."));
+                    } else {
+                        player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§7Du kannst deinen eigenen §6JoinMe §7nicht benutzen"));
+                    }
                 }
             } else {
-                player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§7Der §7Spieler §7ist nicht online!"));
+                ProxySystem.getProxySystem().getLanguageManager().sendMessage(player, "notonline");
             }
         }
     }

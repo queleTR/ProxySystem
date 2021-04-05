@@ -6,6 +6,7 @@
 
 package de.quele.proxysystem.commands;
 
+import de.hype.api.HypeAPI;
 import de.hype.perms.HypePermsBungee;
 import de.hype.perms.utils.RangSQL;
 import de.quele.proxysystem.ProxySystem;
@@ -32,16 +33,23 @@ public class GetIPCommand extends Command {
 
 
                     if (targetPlayer == null) {
-                        player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§cDieser Spieler ist derzeit nicht auf dem Netzwerk§8!"));
+                        ProxySystem.getProxySystem().getLanguageManager().sendMessage(player, "notonline");
                         return;
                     }
-
-                    player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "Die IP von §a" + targetPlayer.getName() + " §7lautet §e" + player.getSocketAddress()));
+                    if (HypeAPI.getInstance().getPlayerManager().getLanguage(player) == 0) {
+                        player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "The IP address of §a" + targetPlayer.getName() + " §7is §e" + player.getSocketAddress()));
+                    }else{
+                        player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "Die IP von §a" + targetPlayer.getName() + " §7lautet §e" + player.getSocketAddress()));
+                    }
                 } else {
-                    player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§cNutze /getip <Name>§8!"));
+                    if (HypeAPI.getInstance().getPlayerManager().getLanguage(player) == 0) {
+                        player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§cUse /getip <name>"));
+                    } else {
+                        player.sendMessage(new TextComponent(ProxySystem.getProxySystem().getPrefix() + "§cNutze /getip <Name>"));
+                    }
                 }
             }else {
-                player.sendMessage(HypePermsBungee.getInstance().getPrefix() + "§7Nicht genug §cRechte§8.");
+                ProxySystem.getProxySystem().getLanguageManager().sendMessage(player, "noperms");
             }
         }
     }
