@@ -6,21 +6,13 @@
 
 package de.quele.proxysystem.commands;
 
-import com.google.cloud.translate.Language;
-import com.google.cloud.translate.Translate;
-import com.google.cloud.translate.TranslateOptions;
-import com.google.cloud.translate.Translation;
 import de.hype.api.HypeAPI;
-import de.hype.perms.commands.RangCommand;
-import de.hype.perms.utils.Rang;
 import de.hype.perms.utils.RangSQL;
 import de.quele.proxysystem.ProxySystem;
 import de.quele.proxysystem.utils.Translator;
-import lombok.SneakyThrows;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.ProxyServer;
-import net.md_5.bungee.api.chat.BaseComponent;
 import net.md_5.bungee.api.chat.TextComponent;
 import net.md_5.bungee.api.connection.ProxiedPlayer;
 import net.md_5.bungee.api.plugin.Command;
