@@ -25,11 +25,11 @@ public class ProxySystem extends Plugin {
     public void onEnable() {
         proxySystem = this;
 
-        getDataFolder().mkdirs();
+        boolean exists = getDataFolder().mkdirs();
 
         LanguageManager.pluginName = "ProxySystem";
         languageManager = new LanguageManager();
-        languageManager.setPrefix("%fcolor%HypeTime.EU §8»§7");
+        languageManager.setPrefix("%scolor%HypeTime.EU §8»§7");
 
         this.initListeners();
         this.initCommands();
@@ -50,6 +50,7 @@ public class ProxySystem extends Plugin {
 
         languageManager.addMessage(0, "ip", "%prefix% The IP of %target% is %ip%§8.");
         languageManager.addMessage(1, "ip", "%prefix% Die IP von %target% lautet %ip%§8.");
+
     }
 
     private void initListeners() {

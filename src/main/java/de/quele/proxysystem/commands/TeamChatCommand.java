@@ -7,9 +7,10 @@
 package de.quele.proxysystem.commands;
 
 import de.hype.api.HypeAPI;
-import de.hype.perms.utils.RangSQL;
+import de.quele.proxysystem.utils.RangSQL;
+import de.linus.deepltranslator.DeepLTranslator;
+import de.linus.deepltranslator.Language;
 import de.quele.proxysystem.ProxySystem;
-import de.quele.proxysystem.utils.Translator;
 import net.md_5.bungee.api.ChatColor;
 import net.md_5.bungee.api.CommandSender;
 import net.md_5.bungee.api.ProxyServer;
@@ -32,17 +33,27 @@ public class TeamChatCommand extends Command {
         if (commandSender instanceof ProxiedPlayer) {
             ProxiedPlayer player = (ProxiedPlayer) commandSender;
 
-            if (!(RangSQL.getRangId(player.getUniqueId().toString()) < 7)) {
+            if (!(RangSQL.getRang(player.getUniqueId().toString()).getId() < 7)) {
                 if (strings.length >= 1) {
                     StringBuilder msg = new StringBuilder();
                     for (String string : strings) msg.append(string).append(" ");
                     msg = new StringBuilder(ChatColor.translateAlternateColorCodes('&', msg.toString()));
                     for (ProxiedPlayer player2 : ProxyServer.getInstance().getPlayers()) {
-                        try {
-                            player2.sendMessage(new TextComponent("§cTeamChat §8| §7" + RangSQL.getRang((player).getUniqueId().toString()).getPrefix() + " " + player.getName()
-                                    + " §8» §7" + Translator.translate("de", "en", msg.toString())));
-                        } catch (Exception e) {
-                            e.printStackTrace();
+                        DeepLTranslator translator = new DeepLTranslator();
+                        if(HypeAPI.getInstance().getPlayerManager().getLanguage(player2) == 0) {
+                            try {
+                                player2.sendMessage(new TextComponent("§cTeamChat §8| §7" + RangSQL.getRang((player).getUniqueId().toString()).getPrefix() + player.getName()
+                                        + " §8» §7" + translator.translate(msg.toString(), Language.AUTO_DETECT, Language.ENGLISH)));
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                        } else {
+                            try {
+                                player2.sendMessage(new TextComponent("§cTeamChat §8| §7" + RangSQL.getRang((player).getUniqueId().toString()).getPrefix() + player.getName()
+                                        + " §8» §7" + translator.translate(msg.toString(), Language.AUTO_DETECT, Language.GERMAN)));
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
                         }
                     }
                 } else {

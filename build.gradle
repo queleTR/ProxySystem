@@ -1,6 +1,7 @@
 plugins {
     id 'java'
     id 'maven'
+    id 'com.github.johnrengelman.shadow' version '6.1.0'
 
 }
 group 'de.quele'
@@ -32,20 +33,29 @@ repositories {
 }
 
 dependencies {
+    shadow localGroovy()
+    shadow 'junit:junit:3.8.2'
+    shadow gradleApi()
     implementation 'org.projectlombok:lombok:1.18.18'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.6.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+    implementation "com.github.jengelman.gradle.plugins:shadow:6.1.0"
+    compileClasspath("com.github.jengelman.gradle.plugins:shadow:6.1.0")
     compileOnly 'io.github.waterfallmc:waterfall-api:1.16-R0.4-SNAPSHOT'
     compile 'io.github.waterfallmc:waterfall-api:1.16-R0.4-SNAPSHOT'
     compile 'de.hype.perms:HypePermsBungee:1.0-SNAPSHOT'
     compile 'de.proxy.hypedcbot.discord:HypeDCBot:1.0-SNAPSHOT'
     compile 'de.hype.api:HypeAPIBungee:1.0-SNAPSHOT'
+    compile 'com.github.Linus789:DeepLTranslator:v1.0.0'
     implementation 'de.proxy.hypedcbot.discord:HypeDCBot:1.0-SNAPSHOT'
     implementation 'de.hype.perms:HypePermsBungee:1.0-SNAPSHOT'
     implementation 'de.hype.api:HypeAPIBungee:1.0-SNAPSHOT'
+    implementation 'com.github.Linus789:DeepLTranslator:v1.0.0'
+    implementation 'com.github.jengelman.gradle.plugins:shadow:6.1.0'
+
 }
 
-jar {
+shadowJar {
     archiveBaseName.set('ProxySystem')
     archiveClassifier.set('SNAPSHOT')
     archiveVersion.set('1.0')
@@ -58,3 +68,4 @@ test {
 
 apply plugin: 'java'
 apply plugin: 'maven'
+apply plugin: 'com.github.johnrengelman.shadow'

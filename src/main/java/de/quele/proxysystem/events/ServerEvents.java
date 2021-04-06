@@ -6,15 +6,13 @@
 
 package de.quele.proxysystem.events;
 
-import de.hype.perms.utils.RangSQL;
+import de.quele.proxysystem.utils.RangSQL;
 import de.quele.proxysystem.utils.Constans;
 import de.quele.proxysystem.utils.PlayerAPI;
-import net.md_5.bungee.api.ProxyServer;
 import net.md_5.bungee.api.ServerPing;
 import net.md_5.bungee.api.chat.TextComponent;
 import net.md_5.bungee.api.event.LoginEvent;
 import net.md_5.bungee.api.event.PostLoginEvent;
-import net.md_5.bungee.api.event.PreLoginEvent;
 import net.md_5.bungee.api.event.ProxyPingEvent;
 import net.md_5.bungee.api.plugin.Listener;
 import net.md_5.bungee.event.EventHandler;
@@ -52,7 +50,7 @@ public class ServerEvents implements Listener {
 
     @EventHandler
     public void onConnect(LoginEvent event) {
-        if(RangSQL.getRangId(event.getConnection().getUniqueId().toString()) >= 7) {
+        if(RangSQL.getRang(event.getConnection().getUniqueId().toString()).getId() >= 7) {
             if(!Constans.getWhitelist().contains(event.getConnection().getUniqueId().toString())) {
                 Constans.addPlayer(event.getConnection().getUniqueId().toString());
             }

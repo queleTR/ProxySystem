@@ -31,10 +31,16 @@
       <scope>compile</scope>
     </dependency>
     <dependency>
-      <groupId>com.google.cloud</groupId>
-      <artifactId>google-cloud-translate</artifactId>
-      <version>1.96.0</version>
+      <groupId>com.github.Linus789</groupId>
+      <artifactId>DeepLTranslator</artifactId>
+      <version>v1.0.0</version>
       <scope>compile</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.github.jengelman.gradle.plugins</groupId>
+      <artifactId>shadow</artifactId>
+      <version>6.1.0</version>
+      <scope>runtime</scope>
     </dependency>
     <dependency>
       <groupId>org.projectlombok</groupId>
