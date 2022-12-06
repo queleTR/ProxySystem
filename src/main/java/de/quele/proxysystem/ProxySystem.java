@@ -85,7 +85,7 @@ public class ProxySystem extends Plugin {
     public void onDisable() {
         proxySystem = this;
         this.getLogger().info("Plugin successfully disabled!");
-        this.getLogger().info(("Coded by QuadrixYT"));
+        this.getLogger().info(("Coded by QuadrixYT and quele"));
     }
 
     public String getPrefix() {
